@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>irukatun.dev - 豚豚的線上服務公開網域</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 背景幾何圖形 -->
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+            <div class="shape shape-6"></div>
+        </div>
+
+        <!-- 主要內容卡片 -->
+        <div class="main-card">
+            <!-- 頭像 -->
+            <div class="avatar">
+                <img src="avatar.jpg" alt="Avatar" class="avatar-image">
+            </div>
+
+            <!-- 網域名稱 -->
+            <h1 class="domain-name">irukatun.dev</h1>
+
+            <!-- 歡迎文字 -->
+            <p class="welcome-text">歡迎來到 豚豚的線上服務公開網域！</p>
+
+            <!-- 服務標籤 -->
+            <p class="service-tags">SERVER · API · WEBSITE · REMOTE · DATABASE</p>
+
+            <!-- 狀態指示器 -->
+            <div class="status-indicators">
+                <div class="status-dot active"></div>
+                <div class="status-dot"></div>
+                <div class="status-dot"></div>
+            </div>
+
+            <!-- 社交連結 -->
+            <div class="social-links">
+                <a href="#" class="social-link github" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link email" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="#" class="social-link website" title="Website">
+                    <i class="fas fa-globe"></i>
+                </a>
+            </div>
+
+            <!-- 更多資訊 -->
+            <div class="more-info">
+                <p class="more-text">更多資訊？</p>
+                <p class="coming-soon">COMING SOON!</p>
+            </div>
+
+            <!-- 版權資訊 -->
+            <p class="copyright">2025© irukatun all rights reserved</p>
+        </div>
+
+        <!-- 模糊彈出框 -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>關於 irukatun.dev</h3>
+                    <button class="close-btn" id="closeBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-content">
+                    <p>這是一個開發者的個人網域，用於部署各種線上服務、API、網站和遠端連線接口。</p>
+                    <p>目前正在建設中，敬請期待更多精彩內容！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
