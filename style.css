@@ -252,6 +252,15 @@ body {
     background: rgba(135, 206, 235, 0.8);
     color: white;
 }
+.social-link.jupyter:hover {
+    background: rgba(243, 119, 38, 0.8);
+    color: white;
+}
+
+.jupyter-logo {
+    width: 24px;
+    height: 24px;
+}
 
 /* 更多資訊 */
 .more-info {
