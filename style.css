@@ -264,35 +264,206 @@ body {
     opacity: 0.8;
 }
 
-/* 更多資訊 */
-.more-info {
+/* 按鈕容器 */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 22px;
+}
+
+.button-row {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+}
+
+/* 服務狀態按鈕 */
+.status-button {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    flex: 1.4;
 }
 
-.more-info:hover {
+.status-button:hover {
     transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.more-text {
-    font-size: 1.1rem;
+.status-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(34, 197, 94, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.status-icon i {
+    font-size: 18px;
     color: #4A90A4;
-    margin-bottom: 6px;
 }
 
-.coming-soon {
-    font-size: 1rem;
+.status-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.status-text span {
+    font-size: 0.9rem;
+    color: #4A90A4;
+    font-weight: 500;
+    margin-bottom: 2px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.status-text small {
+    font-size: 0.85rem;
     color: #87CEEB;
-    font-weight: 600;
-    font-style: italic;
+    font-style: normal;
+    font-weight: normal;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 服務列表按鈕調整 */
+.services-button {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+}
+
+.services-button:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.services-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(135, 206, 235, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.services-icon i {
+    font-size: 18px;
+    color: #4A90A4;
+}
+
+.services-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.services-text span {
+    font-size: 0.9rem;
+    color: #4A90A4;
+    font-weight: 500;
+    margin-bottom: 2px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.services-text small {
+    font-size: 0.85rem;
+    color: #87CEEB;
+    font-style: normal;
+    font-weight: normal;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 服務喚醒按鈕 */
+.wake-button {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    flex: 0.8;
+    min-width: 130px;
+}
+
+.wake-button:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.wake-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.wake-icon i {
+    font-size: 18px;
+    color: #4A90A4;
+}
+
+.wake-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.wake-text span {
+    font-size: 0.9rem;
+    color: #4A90A4;
+    font-weight: 500;
+    margin-bottom: 2px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wake-text small {
+    font-size: 0.85rem;
+    color: #87CEEB;
+    font-style: normal;
+    font-weight: normal;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* 版權資訊 */
 .copyright {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: rgba(74, 144, 164, 0.7);
-    font-style: italic;
+    font-style: normal;
 }
 
 /* 模糊彈出框 */
@@ -377,6 +548,193 @@ body {
     margin-bottom: 0;
 }
 
+/* 服務列表樣式 */
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.service-item:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.service-item.coming-soon-service {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.service-item.coming-soon-service:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+}
+
+.service-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.service-icon i {
+    font-size: 24px;
+    color: #4A90A4;
+}
+
+.service-logo {
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) saturate(100%) invert(41%) sepia(36%) saturate(1169%) hue-rotate(164deg) brightness(93%) contrast(86%);
+}
+
+.service-info h4 {
+    color: #2E86AB;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.service-info p {
+    color: #4A90A4;
+    font-size: 0.95rem;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Jupyter 配置選擇樣式 */
+.jupyter-modal {
+    max-width: 450px;
+    width: 90%;
+}
+
+.jupyter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.jupyter-option {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.jupyter-option:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.option-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.option-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.option-icon i {
+    font-size: 24px;
+    color: #4A90A4;
+}
+
+.option-title h4 {
+    color: #2E86AB;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.option-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+}
+
+.option-badge.lite {
+    background: linear-gradient(45deg, #87CEEB, #4A90A4);
+}
+
+.option-badge.pro {
+    background: linear-gradient(45deg, #FFB6C1, #FF69B4);
+}
+
+.option-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.spec-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #4A90A4;
+    font-weight: 500;
+}
+
+.spec-item i {
+    font-size: 14px;
+    width: 16px;
+    text-align: center;
+}
+
+.option-description {
+    color: #4A90A4;
+    font-size: 0.95rem;
+    margin: 0;
+    font-style: normal;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 /* 響應式設計 */
 @media (max-width: 768px) {
     .main-card {
@@ -405,6 +763,108 @@ body {
     .shape {
         opacity: 0.6;
     }
+    
+    .button-container {
+        gap: 10px;
+    }
+    
+    .button-row {
+        gap: 10px;
+    }
+    
+    .status-button {
+        padding: 12px 15px;
+    }
+    
+    .status-icon {
+        width: 35px;
+        height: 35px;
+        margin-right: 10px;
+    }
+    
+    .status-icon i {
+        font-size: 16px;
+    }
+    
+    .status-text span {
+        font-size: 0.85rem;
+    }
+    
+    .status-text small {
+        font-size: 0.8rem;
+    }
+    
+    .services-button {
+        padding: 12px 15px;
+    }
+    
+    .services-icon {
+        width: 35px;
+        height: 35px;
+        margin-right: 12px;
+    }
+    
+    .services-icon i {
+        font-size: 16px;
+    }
+    
+    .services-text span {
+        font-size: 0.85rem;
+    }
+    
+    .services-text small {
+        font-size: 0.8rem;
+    }
+    
+    .wake-button {
+        padding: 12px 15px;
+        min-width: 110px;
+    }
+    
+    .wake-icon {
+        width: 35px;
+        height: 35px;
+        margin-right: 12px;
+    }
+    
+    .wake-icon i {
+        font-size: 16px;
+    }
+    
+    .wake-text span {
+        font-size: 0.85rem;
+    }
+    
+    .wake-text small {
+        font-size: 0.8rem;
+    }
+    
+    .service-item {
+        padding: 12px;
+    }
+    
+    .service-icon {
+        width: 45px;
+        height: 45px;
+        margin-right: 12px;
+    }
+    
+    .service-icon i {
+        font-size: 20px;
+    }
+    
+    .service-logo {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .service-info h4 {
+        font-size: 1.1rem;
+    }
+    
+    .service-info p {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -429,5 +889,181 @@ body {
     .modal-content p {
         font-size: 1rem;
     }
+    
+    .button-container {
+        gap: 8px;
+    }
+    
+    .button-row {
+        gap: 8px;
+    }
+    
+    .status-button {
+        padding: 10px 12px;
+    }
+    
+    .status-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 8px;
+    }
+    
+    .status-icon i {
+        font-size: 14px;
+    }
+    
+    .status-text span {
+        font-size: 0.8rem;
+    }
+    
+    .status-text small {
+        font-size: 0.75rem;
+    }
+    
+    .services-button {
+        padding: 10px 12px;
+    }
+    
+    .services-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+    
+    .services-icon i {
+        font-size: 14px;
+    }
+    
+    .services-text span {
+        font-size: 0.8rem;
+    }
+    
+    .services-text small {
+        font-size: 0.75rem;
+    }
+    
+    .wake-button {
+        padding: 10px 12px;
+        min-width: 100px;
+    }
+    
+    .wake-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+    
+    .wake-icon i {
+        font-size: 14px;
+    }
+    
+    .wake-text span {
+        font-size: 0.8rem;
+    }
+    
+    .wake-text small {
+        font-size: 0.75rem;
+    }
+    
+    .status-button {
+        padding: 10px 12px;
+    }
+    
+    .services-button {
+        padding: 10px 12px;
+        min-width: auto;
+    }
+    
+    .status-text span {
+        font-size: 0.8rem;
+    }
+    
+    .status-text small {
+        font-size: 0.75rem;
+    }
+    
+    .services-text span {
+        font-size: 0.8rem;
+    }
+    
+    .services-text small {
+        font-size: 0.75rem;
+    }
+    
+    .wake-text span {
+        font-size: 0.8rem;
+    }
+    
+    .wake-text small {
+        font-size: 0.75rem;
+    }
+    
+    .jupyter-modal {
+        max-width: 90%;
+        width: 90%;
+    }
+    
+    .jupyter-option {
+        padding: 15px;
+    }
+    
+    .option-header {
+        margin-bottom: 12px;
+    }
+    
+    .option-icon {
+        width: 45px;
+        height: 45px;
+        margin-right: 12px;
+    }
+    
+    .option-icon i {
+        font-size: 20px;
+    }
+    
+    .option-title h4 {
+        font-size: 1.1rem;
+    }
+    
+    .option-badge {
+        font-size: 0.8rem;
+        padding: 3px 10px;
+    }
+    
+    .option-specs {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .spec-item {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+    
+    .option-description {
+        font-size: 0.9rem;
+    }
 }
 
+/* 超小螢幕優化 (小於 414px) */
+@media (max-width: 414px) {
+    .button-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .status-button {
+        flex: none;
+        width: 100%;
+    }
+    
+    .wake-button {
+        flex: none;
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .services-button {
+        width: 100%;
+    }
+}

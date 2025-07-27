@@ -1,36 +1,75 @@
 // DOM 元素
-const moreInfo = document.querySelector(".more-info");
+const servicesButton = document.querySelector(".services-button");
 const modalOverlay = document.getElementById("modalOverlay");
+const jupyterModalOverlay = document.getElementById("jupyterModalOverlay");
 const closeBtn = document.getElementById("closeBtn");
 const mainCard = document.querySelector(".main-card");
+const wakeButton = document.querySelector(".wake-button");
 
-// 開啟模糊彈出框
+// 開啟服務列表彈出框
 function openModal() {
     modalOverlay.classList.add("active");
     document.body.style.overflow = "hidden";
 }
 
-// 關閉模糊彈出框
+// 關閉服務列表彈出框
 function closeModal() {
     modalOverlay.classList.remove("active");
     document.body.style.overflow = "auto";
 }
 
+// 開啟 Jupyter 配置選擇彈出框
+function openJupyterModal() {
+    modalOverlay.classList.remove("active");
+    jupyterModalOverlay.classList.add("active");
+}
+
+// 關閉 Jupyter 配置選擇彈出框
+function closeJupyterModal() {
+    jupyterModalOverlay.classList.remove("active");
+    document.body.style.overflow = "auto";
+}
+
 // 事件監聽器
-moreInfo.addEventListener("click", openModal);
+servicesButton.addEventListener("click", openModal);
 closeBtn.addEventListener("click", closeModal);
 
-// 點擊背景關閉模糊彈出框
+// 服務喚醒按鈕事件處理
+wakeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    // 添加點擊動畫
+    wakeButton.style.transform = "scale(0.95)";
+    setTimeout(() => {
+        wakeButton.style.transform = "";
+    }, 150);
+    
+    // 跳轉到服務控制台
+    window.open("https://control.irukatun.dev", "_blank");
+});
+
+// 點擊背景關閉彈出框
 modalOverlay.addEventListener("click", (e) => {
     if (e.target === modalOverlay) {
         closeModal();
     }
 });
 
-// ESC 鍵關閉模糊彈出框
+jupyterModalOverlay.addEventListener("click", (e) => {
+    if (e.target === jupyterModalOverlay) {
+        closeJupyterModal();
+    }
+});
+
+// ESC 鍵關閉彈出框
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalOverlay.classList.contains("active")) {
-        closeModal();
+    if (e.key === "Escape") {
+        if (modalOverlay.classList.contains("active")) {
+            closeModal();
+        }
+        if (jupyterModalOverlay.classList.contains("active")) {
+            closeJupyterModal();
+        }
     }
 });
 
@@ -120,7 +159,7 @@ if ("ontouchstart" in window) {
     document.removeEventListener("mousemove", () => {});
     
     // 添加觸控反饋
-    const touchElements = document.querySelectorAll(".social-link, .more-info, .close-btn");
+    const touchElements = document.querySelectorAll(".social-link, .services-button, .wake-button, .close-btn");
     touchElements.forEach(element => {
         element.addEventListener("touchstart", () => {
             element.style.transform = "scale(0.95)";

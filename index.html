@@ -66,33 +66,162 @@
                 <a href="#" class="social-link website" title="Website">
                     <i class="fas fa-globe"></i>
                 </a>
-                <a href="https://jupyter-lite.irukatun.dev" class="social-link jupyter" title="Jupyter Notebook" target="_blank" rel="noopener">
-                    <img src="jupyter.svg" alt="Jupyter" class="jupyter-logo" />
-                </a>
             </div>
 
-            <!-- 更多資訊 -->
-            <div class="more-info">
-                <p class="more-text">更多資訊？</p>
-                <p class="coming-soon">COMING SOON!</p>
+            <!-- 按鈕區域 -->
+            <div class="button-container">
+                <!-- 第一行：服務狀態和服務喚醒 -->
+                <div class="button-row">
+                    <!-- 服務狀態按鈕 -->
+                    <a href="https://status.irukatun.dev" class="status-button" target="_blank" rel="noopener">
+                        <div class="status-icon">
+                            <i class="fas fa-signal"></i>
+                        </div>
+                        <div class="status-text">
+                            <span>服務狀態</span>
+                            <small>Status</small>
+                        </div>
+                    </a>
+
+                    <!-- 服務喚醒按鈕 -->
+                    <a href="#" class="wake-button" title="服務喚醒">
+                        <div class="wake-icon">
+                            <i class="fas fa-power-off"></i>
+                        </div>
+                        <div class="wake-text">
+                            <span>服務喚醒</span>
+                            <small>Wake Up</small>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 第二行：服務列表 -->
+                <div class="button-row">
+                    <!-- 服務列表按鈕 -->
+                    <div class="services-button">
+                        <div class="services-icon">
+                            <i class="fas fa-list"></i>
+                        </div>
+                        <div class="services-text">
+                            <span>服務列表</span>
+                            <small>Services</small>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- 版權資訊 -->
             <p class="copyright">2025© irukatun all rights reserved</p>
         </div>
 
-        <!-- 模糊彈出框 -->
+        <!-- 服務列表彈出框 -->
         <div class="modal-overlay" id="modalOverlay">
             <div class="modal">
                 <div class="modal-header">
-                    <h3>關於 irukatun.dev</h3>
+                    <h3>可用服務列表</h3>
                     <button class="close-btn" id="closeBtn">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
                 <div class="modal-content">
-                    <p>這是豚豚的個人網域，用於部署各種線上服務、API、網站和遠端連線接口。</p>
-                    <p>目前正在建設中，敬請期待更多精彩內容！</p>
+                    <div class="services-list">
+                        <div class="service-item jupyter-service" onclick="openJupyterModal()">
+                            <div class="service-icon">
+                                <img src="jupyter.svg" alt="Jupyter" class="service-logo" />
+                            </div>
+                            <div class="service-info">
+                                <h4>Jupyter Notebook</h4>
+                                <p>線上 Python 開發環境</p>
+                            </div>
+                        </div>
+                        <div class="service-item coming-soon-service">
+                            <div class="service-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="service-info">
+                                <h4>API 服務</h4>
+                                <p>Coming Soon...</p>
+                            </div>
+                        </div>
+                        <div class="service-item coming-soon-service">
+                            <div class="service-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="service-info">
+                                <h4>資料庫服務</h4>
+                                <p>Coming Soon...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jupyter 配置選擇彈出框 -->
+        <div class="modal-overlay" id="jupyterModalOverlay">
+            <div class="modal jupyter-modal">
+                <div class="modal-header">
+                    <h3>選擇 Jupyter 配置</h3>
+                    <button class="close-btn" onclick="closeJupyterModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-content">
+                    <div class="jupyter-options">
+                        <a href="https://jupyter-lite.irukatun.dev" class="jupyter-option" target="_blank" rel="noopener">
+                            <div class="option-header">
+                                <div class="option-icon">
+                                    <i class="fas fa-laptop"></i>
+                                </div>
+                                <div class="option-title">
+                                    <h4>Lite 版本</h4>
+                                    <span class="option-badge lite">輕量配置</span>
+                                </div>
+                            </div>
+                            <div class="option-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-microchip"></i>
+                                    <span>AMD R5-5600</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>RX 6600</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-memory"></i>
+                                    <span>24GB DDR4-3600</span>
+                                </div>
+                            </div>
+                            <p class="option-description">適合日常開發和學習使用</p>
+                        </a>
+                        
+                        <a href="https://jupyter-pro.irukatun.dev" class="jupyter-option" target="_blank" rel="noopener">
+                            <div class="option-header">
+                                <div class="option-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div class="option-title">
+                                    <h4>Pro 版本</h4>
+                                    <span class="option-badge pro">高性能配置</span>
+                                </div>
+                            </div>
+                            <div class="option-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-microchip"></i>
+                                    <span>Intel i7-14700KF</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>RTX 4070 Ti Super</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-memory"></i>
+                                    <span>64GB DDR5-6000</span>
+                                </div>
+                            </div>
+                            <p class="option-description">適合大型數據處理和機器學習</p>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
