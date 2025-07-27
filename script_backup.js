@@ -200,7 +200,7 @@ if ("ontouchstart" in window) {
             }, 150);
         });
     });
-});
+}
 
 // 提供備用的全局函數，以防某些功能需要在 DOMContentLoaded 外執行
 window.openModal = function() {
@@ -219,4 +219,5 @@ window.closeModal = function() {
     }
 };
 
+});
 
