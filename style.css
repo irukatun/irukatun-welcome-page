@@ -9,9 +9,11 @@
 
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden;
-    height: 100vh;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
     background: linear-gradient(135deg, #87CEEB 0%, #FFB6C1 50%, #E6E6FA 100%);
+    background-attachment: fixed;
 }
 
 /* 針對英文部分應用 Caveat 字體 */
@@ -26,21 +28,23 @@ body {
 .container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 0;
 }
 
 /* 背景幾何圖形 */
 .background-shapes {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
     z-index: 1;
+    pointer-events: none;
 }
 
 .shape {
@@ -128,6 +132,8 @@ body {
     max-width: 550px;
     width: 90%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 20px auto;
+    flex-shrink: 0;
 }
 
 .main-card:hover {
@@ -482,6 +488,8 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    overflow-y: auto;
+    padding: 20px;
 }
 
 .modal-overlay.active {
@@ -497,9 +505,13 @@ body {
     padding: 35px;
     max-width: 450px;
     width: 90%;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transform: scale(0.8);
     transition: transform 0.3s ease;
+    margin: auto;
+    flex-shrink: 0;
 }
 
 .modal-overlay.active .modal {
@@ -628,6 +640,7 @@ body {
 .jupyter-modal {
     max-width: 450px;
     width: 90%;
+    max-height: calc(100vh - 40px);
 }
 
 .jupyter-options {
@@ -737,9 +750,15 @@ body {
 
 /* 響應式設計 */
 @media (max-width: 768px) {
+    .container {
+        padding: 10px 0;
+        min-height: calc(100vh - 20px);
+    }
+    
     .main-card {
         padding: 35px 25px;
-        margin: 25px;
+        margin: 15px auto;
+        width: 95%;
     }
     
     .domain-name {
@@ -868,6 +887,17 @@ body {
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 5px 0;
+        min-height: calc(100vh - 10px);
+    }
+    
+    .main-card {
+        padding: 25px 20px;
+        margin: 10px auto;
+        width: 95%;
+    }
+    
     .domain-name {
         font-size: 2rem;
     }
@@ -879,7 +909,8 @@ body {
     
     .modal {
         padding: 25px;
-        margin: 25px;
+        margin: 15px auto;
+        max-height: calc(100vh - 30px);
     }
     
     .modal-header h3 {
@@ -1047,6 +1078,18 @@ body {
 
 /* 超小螢幕優化 (小於 414px) */
 @media (max-width: 414px) {
+    .container {
+        padding: 5px 0;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+    
+    .main-card {
+        margin: 10px auto 20px;
+        padding: 20px 15px;
+        width: 95%;
+    }
+    
     .button-row {
         flex-direction: column;
         gap: 8px;
@@ -1065,5 +1108,128 @@ body {
     
     .services-button {
         width: 100%;
+    }
+}
+
+/* 矮螢幕優化 (高度小於 600px) */
+@media (max-height: 600px) {
+    .container {
+        align-items: flex-start;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .main-card {
+        margin: 10px auto;
+        padding: 20px;
+    }
+    
+    .avatar {
+        margin-bottom: 15px;
+    }
+    
+    .avatar-image {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .domain-name {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .welcome-text {
+        font-size: 1rem;
+        margin-bottom: 12px;
+    }
+    
+    .service-tags {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .social-links {
+        margin: 15px 0;
+        gap: 15px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .button-container {
+        gap: 8px;
+        margin: 15px 0;
+    }
+    
+    .copyright {
+        font-size: 0.8rem;
+        margin-top: 15px;
+    }
+}
+
+/* 非常矮的螢幕優化 (高度小於 500px) */
+@media (max-height: 500px) {
+    .container {
+        align-items: flex-start;
+        padding: 5px 0;
+    }
+    
+    .main-card {
+        padding: 15px;
+        margin: 5px auto;
+    }
+    
+    .avatar {
+        margin-bottom: 10px;
+    }
+    
+    .avatar-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .domain-name {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+    
+    .welcome-text {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+    
+    .service-tags {
+        font-size: 0.75rem;
+        margin-bottom: 12px;
+    }
+    
+    .social-links {
+        margin: 12px 0;
+        gap: 12px;
+    }
+    
+    .social-link {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .button-container {
+        gap: 6px;
+        margin: 12px 0;
+    }
+    
+    .status-button,
+    .wake-button,
+    .services-button {
+        padding: 8px 10px;
+    }
+    
+    .copyright {
+        font-size: 0.75rem;
+        margin-top: 10px;
     }
 }
