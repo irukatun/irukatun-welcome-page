@@ -92,6 +92,9 @@ socialLinks.forEach(link => {
             case "website":
                 window.open("https://irukatun.dev", "_blank");
                 break;
+            case "jupyter":
+                window.open("https://jupyter-lite.irukatun.dev", "_blank");
+                break;
         }
     });
 });
