@@ -209,18 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-    
-    // 添加 Jupyter 服務項目的點擊事件處理
-    const jupyterService = document.querySelector(".jupyter-service");
-    if (jupyterService) {
-        jupyterService.addEventListener("click", openJupyterModal);
-    }
-    
-    // 添加 Jupyter 模態框關閉按鈕的事件處理
-    const jupyterCloseBtn = document.querySelector('#jupyterModalOverlay .close-btn');
-    if (jupyterCloseBtn) {
-        jupyterCloseBtn.addEventListener("click", closeJupyterModal);
-    }
 });
 
 // 提供備用的全局函數，以防某些功能需要在 DOMContentLoaded 外執行
@@ -236,28 +224,6 @@ window.closeModal = function() {
     const modalOverlay = document.getElementById("modalOverlay");
     if (modalOverlay) {
         modalOverlay.classList.remove("active");
-        document.body.style.overflow = "auto";
-    }
-};
-
-// 添加 Jupyter 相關的全局函數
-window.openJupyterModal = function() {
-    const modalOverlay = document.getElementById("modalOverlay");
-    const jupyterModalOverlay = document.getElementById("jupyterModalOverlay");
-    
-    if (modalOverlay) {
-        modalOverlay.classList.remove("active");
-    }
-    if (jupyterModalOverlay) {
-        jupyterModalOverlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-    }
-};
-
-window.closeJupyterModal = function() {
-    const jupyterModalOverlay = document.getElementById("jupyterModalOverlay");
-    if (jupyterModalOverlay) {
-        jupyterModalOverlay.classList.remove("active");
         document.body.style.overflow = "auto";
     }
 };
