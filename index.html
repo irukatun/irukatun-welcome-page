@@ -73,7 +73,7 @@
                 <!-- 第一行：服務狀態和服務喚醒 -->
                 <div class="button-row">
                     <!-- 服務狀態按鈕 -->
-                    <a href="https://status.irukatun.dev" class="status-button" target="_blank" rel="noopener">
+                    <div class="status-button">
                         <div class="status-icon">
                             <i class="fas fa-signal"></i>
                         </div>
@@ -81,10 +81,10 @@
                             <span>服務狀態</span>
                             <small>Status</small>
                         </div>
-                    </a>
+                    </div>
 
                     <!-- 服務喚醒按鈕 -->
-                    <a href="#" class="wake-button" title="服務喚醒">
+                    <div class="wake-button" title="服務喚醒">
                         <div class="wake-icon">
                             <i class="fas fa-power-off"></i>
                         </div>
@@ -92,7 +92,7 @@
                             <span>服務喚醒</span>
                             <small>Wake Up</small>
                         </div>
-                    </a>
+                    </div>
                 </div>
 
                 <!-- 第二行：服務列表 -->
@@ -129,9 +129,18 @@
                             <div class="service-icon">
                                 <img src="jupyter.svg" alt="Jupyter" class="service-logo" />
                             </div>
-                                                        <div class="service-info">
+                            <div class="service-info">
                                 <h4>Jupyter Notebook</h4>
                                 <p>輕量遠端測試及開發環境</p>
+                            </div>
+                        </div>
+                        <div class="service-item remote-service" onclick="openRemoteModal()">
+                            <div class="service-icon">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div class="service-info">
+                                <h4>遠端連線</h4>
+                                <p>多平台遠端桌面與 SSH 連線</p>
                             </div>
                         </div>
                         <div class="service-item coming-soon-service">
@@ -168,7 +177,7 @@
                 </div>
                 <div class="modal-content">
                     <div class="jupyter-options">
-                        <a href="https://jupyter-lite.irukatun.dev" class="jupyter-option" target="_blank" rel="noopener">
+                        <div class="jupyter-option" onclick="showRedirectModal('https://jupyter-lite.irukatun.dev')">
                             <div class="option-header">
                                 <div class="option-icon">
                                     <i class="fas fa-laptop"></i>
@@ -193,9 +202,9 @@
                                 </div>
                             </div>
                             <p class="option-description">適合日常開發和學習使用</p>
-                        </a>
+                        </div>
                         
-                        <a href="https://jupyter-pro.irukatun.dev" class="jupyter-option" target="_blank" rel="noopener">
+                        <div class="jupyter-option" onclick="showRedirectModal('https://jupyter-pro.irukatun.dev')">
                             <div class="option-header">
                                 <div class="option-icon">
                                     <i class="fas fa-rocket"></i>
@@ -220,7 +229,151 @@
                                 </div>
                             </div>
                             <p class="option-description">適合大型數據處理和機器學習</p>
-                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 遠端連線配置選擇彈出框 -->
+        <div class="modal-overlay" id="remoteModalOverlay">
+            <div class="modal remote-modal">
+                <div class="modal-header">
+                    <h3>選擇遠端連線配置</h3>
+                    <button class="close-btn" onclick="closeRemoteModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-content">
+                    <div class="remote-options">
+                        <div class="remote-option lite-option" onclick="openProtocolModal()">
+                            <div class="option-header">
+                                <div class="option-icon">
+                                    <i class="fab fa-ubuntu"></i>
+                                </div>
+                                <div class="option-title">
+                                    <h4>Lite 版本</h4>
+                                    <span class="option-badge lite">Ubuntu 25.04</span>
+                                </div>
+                            </div>
+                            <div class="option-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-microchip"></i>
+                                    <span>AMD R5-5600</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>RX 6600</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-memory"></i>
+                                    <span>24GB DDR4-3600</span>
+                                </div>
+                            </div>
+                            <p class="option-description">輕量級 Linux 遠端桌面環境</p>
+                        </div>
+                        
+                        <div class="remote-option pro-option" onclick="showRedirectModal('https://rdp-pro.irukatun.dev')">
+                            <div class="option-header">
+                                <div class="option-icon">
+                                    <i class="fab fa-windows"></i>
+                                </div>
+                                <div class="option-title">
+                                    <h4>Pro 版本</h4>
+                                    <span class="option-badge pro">Windows 11</span>
+                                </div>
+                            </div>
+                            <div class="option-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-microchip"></i>
+                                    <span>Intel i7-14700KF</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>RTX 4070 Ti Super</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-memory"></i>
+                                    <span>64GB DDR5-6000</span>
+                                </div>
+                            </div>
+                            <p class="option-description">高性能 Windows 遠端桌面環境</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 連線協議選擇彈出框 -->
+        <div class="modal-overlay" id="protocolModalOverlay">
+            <div class="modal protocol-modal">
+                <div class="modal-header">
+                    <h3>選擇連線協議</h3>
+                    <button class="close-btn" onclick="closeProtocolModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-content">
+                    <div class="protocol-options">
+                        <div class="protocol-option" onclick="showRedirectModal('https://rdp-lite.irukatun.dev')">
+                            <div class="protocol-icon">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div class="protocol-info">
+                                <h4>RDP 連線</h4>
+                                <p>遠端桌面協議，提供完整的圖形化桌面環境</p>
+                            </div>
+                            <div class="protocol-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="protocol-option" onclick="showRedirectModal('https://ssh-lite.irukatun.dev')">
+                            <div class="protocol-icon">
+                                <i class="fas fa-terminal"></i>
+                            </div>
+                            <div class="protocol-info">
+                                <h4>SSH 連線</h4>
+                                <p>安全終端連線，適合命令行操作和開發</p>
+                            </div>
+                            <div class="protocol-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 跳轉提示彈出框 -->
+        <div class="modal-overlay" id="redirectModalOverlay">
+            <div class="modal redirect-modal">
+                <div class="redirect-content">
+                    <div class="redirect-icon">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    <h3 class="redirect-title">正在跳轉中...</h3>
+                    <p class="redirect-description">即將前往外部服務</p>
+                    <div class="redirect-url" id="redirectUrl"></div>
+                    
+                    <div class="redirect-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span id="countdown">3</span> 秒後自動跳轉
+                        </div>
+                    </div>
+                    
+                    <div class="redirect-buttons">
+                        <button class="redirect-btn cancel-btn" onclick="cancelRedirect()">
+                            <i class="fas fa-times"></i>
+                            取消
+                        </button>
+                        <button class="redirect-btn continue-btn" onclick="continueRedirect()">
+                            <i class="fas fa-arrow-right"></i>
+                            立即前往
+                        </button>
                     </div>
                 </div>
             </div>

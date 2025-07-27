@@ -4,9 +4,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const servicesButton = document.querySelector(".services-button");
     const modalOverlay = document.getElementById("modalOverlay");
     const jupyterModalOverlay = document.getElementById("jupyterModalOverlay");
+    const remoteModalOverlay = document.getElementById("remoteModalOverlay");
+    const protocolModalOverlay = document.getElementById("protocolModalOverlay");
+    const redirectModalOverlay = document.getElementById("redirectModalOverlay");
     const closeBtn = document.getElementById("closeBtn");
     const mainCard = document.querySelector(".main-card");
     const wakeButton = document.querySelector(".wake-button");
+    
+    // 跳轉相關變量
+    let redirectTimer = null;
+    let countdownTimer = null;
+    let targetUrl = '';
 
     // 檢查必要元素是否存在
     if (!servicesButton) {
@@ -49,6 +57,40 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         document.body.style.overflow = "auto";
     }
+    
+    // 開啟遠端連線配置選擇彈出框
+    function openRemoteModal() {
+        modalOverlay.classList.remove("active");
+        if (remoteModalOverlay) {
+            remoteModalOverlay.classList.add("active");
+        }
+    }
+
+    // 關閉遠端連線配置選擇彈出框
+    function closeRemoteModal() {
+        if (remoteModalOverlay) {
+            remoteModalOverlay.classList.remove("active");
+        }
+        document.body.style.overflow = "auto";
+    }
+    
+    // 開啟連線協議選擇彈出框
+    function openProtocolModal() {
+        if (remoteModalOverlay) {
+            remoteModalOverlay.classList.remove("active");
+        }
+        if (protocolModalOverlay) {
+            protocolModalOverlay.classList.add("active");
+        }
+    }
+
+    // 關閉連線協議選擇彈出框
+    function closeProtocolModal() {
+        if (protocolModalOverlay) {
+            protocolModalOverlay.classList.remove("active");
+        }
+        document.body.style.overflow = "auto";
+    }
 
     // 事件監聽器 - 添加安全檢查
     if (servicesButton) {
@@ -70,8 +112,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 wakeButton.style.transform = "";
             }, 150);
             
-            // 跳轉到服務控制台
-            window.open("https://control.irukatun.dev", "_blank");
+            // 使用跳轉提示
+            window.showRedirectModal("https://control.irukatun.dev");
+        });
+    }
+    
+    // 服務狀態按鈕事件處理
+    const statusButton = document.querySelector(".status-button");
+    if (statusButton) {
+        statusButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            
+            // 添加點擊動畫
+            statusButton.style.transform = "scale(0.95)";
+            setTimeout(() => {
+                statusButton.style.transform = "";
+            }, 150);
+            
+            // 使用跳轉提示
+            window.showRedirectModal("https://status.irukatun.dev");
         });
     }
 
@@ -91,6 +150,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    if (remoteModalOverlay) {
+        remoteModalOverlay.addEventListener("click", (e) => {
+            if (e.target === remoteModalOverlay) {
+                closeRemoteModal();
+            }
+        });
+    }
+    
+    if (protocolModalOverlay) {
+        protocolModalOverlay.addEventListener("click", (e) => {
+            if (e.target === protocolModalOverlay) {
+                closeProtocolModal();
+            }
+        });
+    }
+    
+    if (redirectModalOverlay) {
+        redirectModalOverlay.addEventListener("click", (e) => {
+            if (e.target === redirectModalOverlay) {
+                window.cancelRedirect();
+            }
+        });
+    }
 
     // ESC 鍵關閉彈出框 - 添加安全檢查
     document.addEventListener("keydown", (e) => {
@@ -100,6 +183,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (jupyterModalOverlay && jupyterModalOverlay.classList.contains("active")) {
                 closeJupyterModal();
+            }
+            if (remoteModalOverlay && remoteModalOverlay.classList.contains("active")) {
+                closeRemoteModal();
+            }
+            if (protocolModalOverlay && protocolModalOverlay.classList.contains("active")) {
+                closeProtocolModal();
+            }
+            if (redirectModalOverlay && redirectModalOverlay.classList.contains("active")) {
+                window.cancelRedirect();
             }
         }
     });
@@ -153,23 +245,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.style.transform = "";
             }, 150);
             
-            // 這裡可以添加實際的連結邏輯
+            // 根據連結類型執行不同操作
             const linkType = link.classList[1]; // github, email, website
-            console.log(`點擊了 ${linkType} 連結`);
             
-            // 示例：根據連結類型執行不同操作
             switch(linkType) {
                 case "github":
-                    window.open("https://github.com/tuntun1112", "_blank");
+                    window.showRedirectModal("https://github.com/tuntun1112");
                     break;
                 case "email":
+                    // Email 不需要跳轉提示，直接執行
                     window.location.href = "mailto:support@irukatun.dev";
                     break;
                 case "website":
-                    window.open("https://irukatun.dev", "_blank");
+                    window.showRedirectModal("https://irukatun.dev");
                     break;
                 case "jupyter":
-                    window.open("https://jupyter-lite.irukatun.dev", "_blank");
+                    window.showRedirectModal("https://jupyter-lite.irukatun.dev");
                     break;
             }
         });
@@ -196,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.removeEventListener("mousemove", () => {});
         
         // 添加觸控反饋
-        const touchElements = document.querySelectorAll(".social-link, .services-button, .wake-button, .close-btn");
+        const touchElements = document.querySelectorAll(".social-link, .services-button, .wake-button, .status-button, .close-btn");
         touchElements.forEach(element => {
             element.addEventListener("touchstart", () => {
                 element.style.transform = "scale(0.95)";
@@ -216,10 +307,34 @@ document.addEventListener('DOMContentLoaded', function() {
         jupyterService.addEventListener("click", openJupyterModal);
     }
     
+    // 添加遠端連線服務項目的點擊事件處理
+    const remoteService = document.querySelector(".remote-service");
+    if (remoteService) {
+        remoteService.addEventListener("click", openRemoteModal);
+    }
+    
+    // 添加 Lite 選項的點擊事件處理
+    const liteOption = document.querySelector(".lite-option");
+    if (liteOption) {
+        liteOption.addEventListener("click", openProtocolModal);
+    }
+    
     // 添加 Jupyter 模態框關閉按鈕的事件處理
     const jupyterCloseBtn = document.querySelector('#jupyterModalOverlay .close-btn');
     if (jupyterCloseBtn) {
         jupyterCloseBtn.addEventListener("click", closeJupyterModal);
+    }
+    
+    // 添加遠端連線模態框關閉按鈕的事件處理
+    const remoteCloseBtn = document.querySelector('#remoteModalOverlay .close-btn');
+    if (remoteCloseBtn) {
+        remoteCloseBtn.addEventListener("click", closeRemoteModal);
+    }
+    
+    // 添加協議選擇模態框關閉按鈕的事件處理
+    const protocolCloseBtn = document.querySelector('#protocolModalOverlay .close-btn');
+    if (protocolCloseBtn) {
+        protocolCloseBtn.addEventListener("click", closeProtocolModal);
     }
 });
 
@@ -260,4 +375,151 @@ window.closeJupyterModal = function() {
         jupyterModalOverlay.classList.remove("active");
         document.body.style.overflow = "auto";
     }
+};
+
+// 添加遠端連線相關的全局函數
+window.openRemoteModal = function() {
+    const modalOverlay = document.getElementById("modalOverlay");
+    const remoteModalOverlay = document.getElementById("remoteModalOverlay");
+    
+    if (modalOverlay) {
+        modalOverlay.classList.remove("active");
+    }
+    if (remoteModalOverlay) {
+        remoteModalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+};
+
+window.closeRemoteModal = function() {
+    const remoteModalOverlay = document.getElementById("remoteModalOverlay");
+    if (remoteModalOverlay) {
+        remoteModalOverlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+    }
+};
+
+// 添加連線協議選擇相關的全局函數
+window.openProtocolModal = function() {
+    const remoteModalOverlay = document.getElementById("remoteModalOverlay");
+    const protocolModalOverlay = document.getElementById("protocolModalOverlay");
+    
+    if (remoteModalOverlay) {
+        remoteModalOverlay.classList.remove("active");
+    }
+    if (protocolModalOverlay) {
+        protocolModalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+};
+
+window.closeProtocolModal = function() {
+    const protocolModalOverlay = document.getElementById("protocolModalOverlay");
+    if (protocolModalOverlay) {
+        protocolModalOverlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+    }
+};
+
+// 添加跳轉相關的全局函數
+window.showRedirectModal = function(url) {
+    const redirectModalOverlay = document.getElementById("redirectModalOverlay");
+    const redirectUrlElement = document.getElementById('redirectUrl');
+    const countdownElement = document.getElementById('countdown');
+    const progressFill = document.getElementById('progressFill');
+    
+    if (redirectUrlElement) {
+        redirectUrlElement.textContent = url;
+    }
+    
+    // 關閉其他模態框
+    const modalOverlay = document.getElementById("modalOverlay");
+    const jupyterModalOverlay = document.getElementById("jupyterModalOverlay");
+    const remoteModalOverlay = document.getElementById("remoteModalOverlay");
+    const protocolModalOverlay = document.getElementById("protocolModalOverlay");
+    
+    if (modalOverlay) modalOverlay.classList.remove("active");
+    if (jupyterModalOverlay) jupyterModalOverlay.classList.remove("active");
+    if (remoteModalOverlay) remoteModalOverlay.classList.remove("active");
+    if (protocolModalOverlay) protocolModalOverlay.classList.remove("active");
+    
+    // 顯示跳轉模態框
+    if (redirectModalOverlay) {
+        redirectModalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+    
+    // 重置進度條和倒計時
+    if (progressFill) {
+        progressFill.style.animation = 'none';
+        progressFill.offsetHeight; // 強制重繪
+        progressFill.style.animation = 'progressAnimation 3s linear forwards';
+    }
+    
+    let countdown = 3;
+    if (countdownElement) {
+        countdownElement.textContent = countdown;
+    }
+    
+    // 清除現有的計時器
+    if (window.redirectTimer) clearTimeout(window.redirectTimer);
+    if (window.countdownTimer) clearInterval(window.countdownTimer);
+    
+    // 保存目標URL到全局變量 - 在這裡就設定
+    window.targetUrl = url;
+    
+    // 開始倒計時
+    window.countdownTimer = setInterval(() => {
+        countdown--;
+        if (countdownElement) {
+            countdownElement.textContent = countdown;
+        }
+        if (countdown <= 0) {
+            clearInterval(window.countdownTimer);
+        }
+    }, 1000);
+    
+    // 3秒後自動跳轉
+    window.redirectTimer = setTimeout(() => {
+        if (window.targetUrl) {
+            window.open(window.targetUrl, '_blank', 'noopener,noreferrer');
+        }
+        window.closeRedirectModal();
+    }, 3000);
+};
+
+window.cancelRedirect = function() {
+    if (window.redirectTimer) {
+        clearTimeout(window.redirectTimer);
+        window.redirectTimer = null;
+    }
+    if (window.countdownTimer) {
+        clearInterval(window.countdownTimer);
+        window.countdownTimer = null;
+    }
+    window.closeRedirectModal();
+};
+
+window.continueRedirect = function() {
+    if (window.redirectTimer) {
+        clearTimeout(window.redirectTimer);
+        window.redirectTimer = null;
+    }
+    if (window.countdownTimer) {
+        clearInterval(window.countdownTimer);
+        window.countdownTimer = null;
+    }
+    if (window.targetUrl) {
+        window.open(window.targetUrl, '_blank', 'noopener,noreferrer');
+    }
+    window.closeRedirectModal();
+};
+
+window.closeRedirectModal = function() {
+    const redirectModalOverlay = document.getElementById("redirectModalOverlay");
+    if (redirectModalOverlay) {
+        redirectModalOverlay.classList.remove("active");
+    }
+    document.body.style.overflow = "auto";
+    window.targetUrl = '';
 };

@@ -1233,3 +1233,361 @@ body {
         margin-top: 10px;
     }
 }
+
+/* 遠端連線配置選擇樣式 */
+.remote-modal {
+    max-width: 450px;
+    width: 90%;
+    max-height: calc(100vh - 40px);
+}
+
+.remote-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.remote-option {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.remote-option:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.remote-option.lite-option {
+    position: relative;
+}
+
+.remote-option.lite-option::after {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4A90A4;
+    opacity: 0.7;
+}
+
+/* 連線協議選擇樣式 */
+.protocol-modal {
+    max-width: 400px;
+    width: 90%;
+}
+
+.protocol-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.protocol-option {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 18px;
+    transition: all 0.3s ease;
+}
+
+.protocol-option:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.protocol-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.protocol-icon i {
+    font-size: 24px;
+    color: #4A90A4;
+}
+
+.protocol-info {
+    flex: 1;
+}
+
+.protocol-info h4 {
+    color: #2E86AB;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.protocol-info p {
+    color: #4A90A4;
+    font-size: 0.95rem;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.protocol-arrow {
+    margin-left: 15px;
+    color: #4A90A4;
+    opacity: 0.7;
+}
+
+.protocol-arrow i {
+    font-size: 18px;
+}
+
+/* 響應式設計 - 遠端連線相關 */
+@media (max-width: 768px) {
+    .remote-modal {
+        max-width: 90%;
+        width: 90%;
+    }
+    
+    .remote-option {
+        padding: 15px;
+    }
+    
+    .protocol-modal {
+        max-width: 90%;
+        width: 90%;
+    }
+    
+    .protocol-option {
+        padding: 15px;
+    }
+    
+    .protocol-icon {
+        width: 45px;
+        height: 45px;
+        margin-right: 12px;
+    }
+    
+    .protocol-icon i {
+        font-size: 20px;
+    }
+    
+    .protocol-info h4 {
+        font-size: 1.1rem;
+    }
+    
+    .protocol-info p {
+        font-size: 0.9rem;
+    }
+}
+
+/* 跳轉提示模態框樣式 */
+.redirect-modal {
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+}
+
+.redirect-content {
+    padding: 30px 20px;
+}
+
+.redirect-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #87CEEB, #4A90A4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    animation: pulse 2s infinite;
+}
+
+.redirect-icon i {
+    font-size: 36px;
+    color: white;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(135, 206, 235, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(135, 206, 235, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(135, 206, 235, 0);
+    }
+}
+
+.redirect-title {
+    color: #2E86AB;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.redirect-description {
+    color: #4A90A4;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.redirect-url {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 25px;
+    color: #2E86AB;
+    font-size: 0.9rem;
+    font-weight: 500;
+    word-break: break-all;
+    font-family: 'Courier New', monospace;
+}
+
+.redirect-progress {
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #87CEEB, #4A90A4);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s linear;
+    animation: progressAnimation 3s linear forwards;
+}
+
+@keyframes progressAnimation {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.progress-text {
+    color: #4A90A4;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.progress-text span {
+    color: #2E86AB;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.redirect-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.redirect-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cancel-btn {
+    background: rgba(255, 255, 255, 0.3);
+    color: #4A90A4;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cancel-btn:hover {
+    background: rgba(255, 182, 193, 0.3);
+    color: #2E86AB;
+    transform: translateY(-2px);
+}
+
+.continue-btn {
+    background: linear-gradient(135deg, #87CEEB, #4A90A4);
+    color: white;
+}
+
+.continue-btn:hover {
+    background: linear-gradient(135deg, #4A90A4, #2E86AB);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(135, 206, 235, 0.3);
+}
+
+/* 響應式設計 - 跳轉提示 */
+@media (max-width: 768px) {
+    .redirect-modal {
+        max-width: 90%;
+        width: 90%;
+    }
+    
+    .redirect-content {
+        padding: 25px 15px;
+    }
+    
+    .redirect-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 20px;
+    }
+    
+    .redirect-icon i {
+        font-size: 30px;
+    }
+    
+    .redirect-title {
+        font-size: 1.3rem;
+    }
+    
+    .redirect-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .redirect-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+    }
+}
