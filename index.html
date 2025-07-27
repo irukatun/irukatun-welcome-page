@@ -127,20 +127,20 @@
                     <div class="services-list">
                         <div class="service-item jupyter-service" onclick="openJupyterModal()">
                             <div class="service-icon">
-                                <img src="jupyter.svg" alt="Jupyter" class="service-logo" />
+                                <i class="fas fa-book"></i>
                             </div>
                             <div class="service-info">
                                 <h4>Jupyter Notebook</h4>
-                                <p>輕量遠端測試及開發環境</p>
+                                <p>點擊進入輕量遠端測試及開發環境</p>
                             </div>
                         </div>
-                        <div class="service-item remote-service" onclick="openRemoteModal()">
+                        <div class="service-item remote-service" onclick="showRedirectModal('https://remote.irukatun.dev/guacamole/')">
                             <div class="service-icon">
-                                <i class="fas fa-desktop"></i>
+                                <i class="fas fa-network-wired"></i>
                             </div>
                             <div class="service-info">
-                                <h4>遠端連線</h4>
-                                <p>多平台遠端桌面與 SSH 連線</p>
+                                <h4>apache guacamole</h4>
+                                <p>點擊進入遠端連線管理介面</p>
                             </div>
                         </div>
                         <div class="service-item coming-soon-service">
@@ -229,116 +229,6 @@
                                 </div>
                             </div>
                             <p class="option-description">適合大型數據處理和機器學習</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 遠端連線配置選擇彈出框 -->
-        <div class="modal-overlay" id="remoteModalOverlay">
-            <div class="modal remote-modal">
-                <div class="modal-header">
-                    <h3>選擇遠端連線配置</h3>
-                    <button class="close-btn" onclick="closeRemoteModal()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-content">
-                    <div class="remote-options">
-                        <div class="remote-option lite-option" onclick="openProtocolModal()">
-                            <div class="option-header">
-                                <div class="option-icon">
-                                    <i class="fab fa-ubuntu"></i>
-                                </div>
-                                <div class="option-title">
-                                    <h4>Lite 版本</h4>
-                                    <span class="option-badge lite">Ubuntu 25.04</span>
-                                </div>
-                            </div>
-                            <div class="option-specs">
-                                <div class="spec-item">
-                                    <i class="fas fa-microchip"></i>
-                                    <span>AMD R5-5600</span>
-                                </div>
-                                <div class="spec-item">
-                                    <i class="fas fa-tv"></i>
-                                    <span>RX 6600</span>
-                                </div>
-                                <div class="spec-item">
-                                    <i class="fas fa-memory"></i>
-                                    <span>24GB DDR4-3600</span>
-                                </div>
-                            </div>
-                            <p class="option-description">輕量級 Linux 遠端桌面環境</p>
-                        </div>
-                        
-                        <div class="remote-option pro-option" onclick="showRedirectModal('https://rdp-pro.irukatun.dev')">
-                            <div class="option-header">
-                                <div class="option-icon">
-                                    <i class="fab fa-windows"></i>
-                                </div>
-                                <div class="option-title">
-                                    <h4>Pro 版本</h4>
-                                    <span class="option-badge pro">Windows 11</span>
-                                </div>
-                            </div>
-                            <div class="option-specs">
-                                <div class="spec-item">
-                                    <i class="fas fa-microchip"></i>
-                                    <span>Intel i7-14700KF</span>
-                                </div>
-                                <div class="spec-item">
-                                    <i class="fas fa-tv"></i>
-                                    <span>RTX 4070 Ti Super</span>
-                                </div>
-                                <div class="spec-item">
-                                    <i class="fas fa-memory"></i>
-                                    <span>64GB DDR5-6000</span>
-                                </div>
-                            </div>
-                            <p class="option-description">高性能 Windows 遠端桌面環境</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 連線協議選擇彈出框 -->
-        <div class="modal-overlay" id="protocolModalOverlay">
-            <div class="modal protocol-modal">
-                <div class="modal-header">
-                    <h3>選擇連線協議</h3>
-                    <button class="close-btn" onclick="closeProtocolModal()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-content">
-                    <div class="protocol-options">
-                        <div class="protocol-option" onclick="showRedirectModal('https://rdp-lite.irukatun.dev')">
-                            <div class="protocol-icon">
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <div class="protocol-info">
-                                <h4>RDP 連線</h4>
-                                <p>遠端桌面協議，提供完整的圖形化桌面環境</p>
-                            </div>
-                            <div class="protocol-arrow">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                        
-                        <div class="protocol-option" onclick="showRedirectModal('https://ssh-lite.irukatun.dev')">
-                            <div class="protocol-icon">
-                                <i class="fas fa-terminal"></i>
-                            </div>
-                            <div class="protocol-info">
-                                <h4>SSH 連線</h4>
-                                <p>安全終端連線，適合命令行操作和開發</p>
-                            </div>
-                            <div class="protocol-arrow">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
                         </div>
                     </div>
                 </div>

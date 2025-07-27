@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const servicesButton = document.querySelector(".services-button");
     const modalOverlay = document.getElementById("modalOverlay");
     const jupyterModalOverlay = document.getElementById("jupyterModalOverlay");
-    const remoteModalOverlay = document.getElementById("remoteModalOverlay");
-    const protocolModalOverlay = document.getElementById("protocolModalOverlay");
     const redirectModalOverlay = document.getElementById("redirectModalOverlay");
     const closeBtn = document.getElementById("closeBtn");
     const mainCard = document.querySelector(".main-card");
@@ -54,40 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeJupyterModal() {
         if (jupyterModalOverlay) {
             jupyterModalOverlay.classList.remove("active");
-        }
-        document.body.style.overflow = "auto";
-    }
-    
-    // 開啟遠端連線配置選擇彈出框
-    function openRemoteModal() {
-        modalOverlay.classList.remove("active");
-        if (remoteModalOverlay) {
-            remoteModalOverlay.classList.add("active");
-        }
-    }
-
-    // 關閉遠端連線配置選擇彈出框
-    function closeRemoteModal() {
-        if (remoteModalOverlay) {
-            remoteModalOverlay.classList.remove("active");
-        }
-        document.body.style.overflow = "auto";
-    }
-    
-    // 開啟連線協議選擇彈出框
-    function openProtocolModal() {
-        if (remoteModalOverlay) {
-            remoteModalOverlay.classList.remove("active");
-        }
-        if (protocolModalOverlay) {
-            protocolModalOverlay.classList.add("active");
-        }
-    }
-
-    // 關閉連線協議選擇彈出框
-    function closeProtocolModal() {
-        if (protocolModalOverlay) {
-            protocolModalOverlay.classList.remove("active");
         }
         document.body.style.overflow = "auto";
     }
@@ -151,22 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    if (remoteModalOverlay) {
-        remoteModalOverlay.addEventListener("click", (e) => {
-            if (e.target === remoteModalOverlay) {
-                closeRemoteModal();
-            }
-        });
-    }
-    
-    if (protocolModalOverlay) {
-        protocolModalOverlay.addEventListener("click", (e) => {
-            if (e.target === protocolModalOverlay) {
-                closeProtocolModal();
-            }
-        });
-    }
-    
     if (redirectModalOverlay) {
         redirectModalOverlay.addEventListener("click", (e) => {
             if (e.target === redirectModalOverlay) {
@@ -183,12 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (jupyterModalOverlay && jupyterModalOverlay.classList.contains("active")) {
                 closeJupyterModal();
-            }
-            if (remoteModalOverlay && remoteModalOverlay.classList.contains("active")) {
-                closeRemoteModal();
-            }
-            if (protocolModalOverlay && protocolModalOverlay.classList.contains("active")) {
-                closeProtocolModal();
             }
             if (redirectModalOverlay && redirectModalOverlay.classList.contains("active")) {
                 window.cancelRedirect();
@@ -307,34 +249,10 @@ document.addEventListener('DOMContentLoaded', function() {
         jupyterService.addEventListener("click", openJupyterModal);
     }
     
-    // 添加遠端連線服務項目的點擊事件處理
-    const remoteService = document.querySelector(".remote-service");
-    if (remoteService) {
-        remoteService.addEventListener("click", openRemoteModal);
-    }
-    
-    // 添加 Lite 選項的點擊事件處理
-    const liteOption = document.querySelector(".lite-option");
-    if (liteOption) {
-        liteOption.addEventListener("click", openProtocolModal);
-    }
-    
     // 添加 Jupyter 模態框關閉按鈕的事件處理
     const jupyterCloseBtn = document.querySelector('#jupyterModalOverlay .close-btn');
     if (jupyterCloseBtn) {
         jupyterCloseBtn.addEventListener("click", closeJupyterModal);
-    }
-    
-    // 添加遠端連線模態框關閉按鈕的事件處理
-    const remoteCloseBtn = document.querySelector('#remoteModalOverlay .close-btn');
-    if (remoteCloseBtn) {
-        remoteCloseBtn.addEventListener("click", closeRemoteModal);
-    }
-    
-    // 添加協議選擇模態框關閉按鈕的事件處理
-    const protocolCloseBtn = document.querySelector('#protocolModalOverlay .close-btn');
-    if (protocolCloseBtn) {
-        protocolCloseBtn.addEventListener("click", closeProtocolModal);
     }
 });
 
@@ -377,50 +295,6 @@ window.closeJupyterModal = function() {
     }
 };
 
-// 添加遠端連線相關的全局函數
-window.openRemoteModal = function() {
-    const modalOverlay = document.getElementById("modalOverlay");
-    const remoteModalOverlay = document.getElementById("remoteModalOverlay");
-    
-    if (modalOverlay) {
-        modalOverlay.classList.remove("active");
-    }
-    if (remoteModalOverlay) {
-        remoteModalOverlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-    }
-};
-
-window.closeRemoteModal = function() {
-    const remoteModalOverlay = document.getElementById("remoteModalOverlay");
-    if (remoteModalOverlay) {
-        remoteModalOverlay.classList.remove("active");
-        document.body.style.overflow = "auto";
-    }
-};
-
-// 添加連線協議選擇相關的全局函數
-window.openProtocolModal = function() {
-    const remoteModalOverlay = document.getElementById("remoteModalOverlay");
-    const protocolModalOverlay = document.getElementById("protocolModalOverlay");
-    
-    if (remoteModalOverlay) {
-        remoteModalOverlay.classList.remove("active");
-    }
-    if (protocolModalOverlay) {
-        protocolModalOverlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-    }
-};
-
-window.closeProtocolModal = function() {
-    const protocolModalOverlay = document.getElementById("protocolModalOverlay");
-    if (protocolModalOverlay) {
-        protocolModalOverlay.classList.remove("active");
-        document.body.style.overflow = "auto";
-    }
-};
-
 // 添加跳轉相關的全局函數
 window.showRedirectModal = function(url) {
     const redirectModalOverlay = document.getElementById("redirectModalOverlay");
@@ -435,13 +309,9 @@ window.showRedirectModal = function(url) {
     // 關閉其他模態框
     const modalOverlay = document.getElementById("modalOverlay");
     const jupyterModalOverlay = document.getElementById("jupyterModalOverlay");
-    const remoteModalOverlay = document.getElementById("remoteModalOverlay");
-    const protocolModalOverlay = document.getElementById("protocolModalOverlay");
     
     if (modalOverlay) modalOverlay.classList.remove("active");
     if (jupyterModalOverlay) jupyterModalOverlay.classList.remove("active");
-    if (remoteModalOverlay) remoteModalOverlay.classList.remove("active");
-    if (protocolModalOverlay) protocolModalOverlay.classList.remove("active");
     
     // 顯示跳轉模態框
     if (redirectModalOverlay) {
