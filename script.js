@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 150);
             
             // 使用跳轉提示
-            window.showRedirectModal("https://status.irukatun.dev");
+            window.showRedirectModal("https://stats.uptimerobot.com/abX73G9aMk");
         });
     }
 
