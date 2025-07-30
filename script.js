@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             switch(linkType) {
                 case "github":
-                    window.showRedirectModal("https://github.com/tuntun1112");
+                    window.showRedirectModal("https://github.com/irukatun");
                     break;
                 case "email":
                     // Email 不需要跳轉提示，直接執行
