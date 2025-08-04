@@ -273,6 +273,15 @@ window.closeModal = function() {
     }
 };
 
+// 確認進入後台管理
+window.confirmDashboardAccess = function() {
+    const confirmed = confirm("⚠️ 您即將進入服務狀態的後台管理介面\n\n這是管理員專用頁面，可能不是您該去的地方。\n\n確定要繼續嗎？");
+    
+    if (confirmed) {
+        window.showRedirectModal('https://status.irukatun.dev/dashboard');
+    }
+};
+
 // 添加 Jupyter 相關的全局函數
 window.openJupyterModal = function() {
     const modalOverlay = document.getElementById("modalOverlay");
