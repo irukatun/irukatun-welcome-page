@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     if (!wakeButton) {
-        console.error('Wake button not found');
+        console.error('Control button not found');
         return;
     }
 
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         closeBtn.addEventListener("click", closeModal);
     }
 
-    // 服務喚醒按鈕事件處理
+    // 服務控制按鈕事件處理
     if (wakeButton) {
         wakeButton.addEventListener("click", (e) => {
             e.preventDefault();
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 150);
             
             // 使用跳轉提示
-            window.showRedirectModal("https://stats.uptimerobot.com/abX73G9aMk");
+            window.showRedirectModal("https://status.irukatun.dev");
         });
     }
 
