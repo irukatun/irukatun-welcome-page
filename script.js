@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.showRedirectModal("https://irukatun.dev");
                     break;
                 case "jupyter":
-                    window.showRedirectModal("https://jupyter-lite.irukatun.dev");
+                    window.confirmAuthorizedRedirect("https://jupyter-lite.irukatun.dev","Jupyter Lite");
                     break;
             }
         });
@@ -401,4 +401,17 @@ window.closeRedirectModal = function() {
     }
     document.body.style.overflow = "auto";
     window.targetUrl = '';
+};
+
+// 授權訪問確認（Remote Access 與 Jupyter Notebook 分流）
+window.confirmAuthorizedRedirect = function(url, label) {
+    const serviceLabel = label || '目標服務';
+    const confirmed = confirm(
+        '⚠️ 僅限具有權限的用戶訪問' +
+        '\n\n此服務僅開放給已授權或受邀使用者，未經授權的嘗試可能被記錄。' +
+        '\n\n是否要繼續前往 ' + serviceLabel + '？'
+    );
+    if (confirmed) {
+        window.showRedirectModal(url);
+    }
 };
