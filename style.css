@@ -146,21 +146,46 @@ body {
     margin-bottom: 25px;
 }
 
+/* 頭像可點擊效果 */
+#avatar-link {
+    display: inline-block;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+#avatar-link:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
 .avatar-image {
     width: 90px;
     height: 90px;
     border-radius: 50%;
     object-fit: cover;
     margin: 0 auto;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    transition: transform 0.3s ease;
+    border: 3px solid rgba(135, 206, 235, 0.7);
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(135, 206, 235, 0.25);
+    animation: avatarPulse 3s ease-in-out infinite;
 }
 
-.avatar-image:hover {
-    transform: scale(1.1);
+@keyframes avatarPulse {
+    0%, 100% {
+        box-shadow: 0 6px 20px rgba(135, 206, 235, 0.25);
+    }
+    50% {
+        box-shadow: 0 6px 25px rgba(135, 206, 235, 0.4);
+    }
 }
 
-/* 網域名稱 */
+#avatar-link:hover .avatar-image {
+    border-color: rgba(135, 206, 235, 0.9);
+    box-shadow: 0 8px 30px rgba(135, 206, 235, 0.4);
+    transform: scale(1.03);
+    animation-play-state: paused;
+}/* 網域名稱 */
 .domain-name {
     font-size: 2.8rem;
     font-weight: 600;
