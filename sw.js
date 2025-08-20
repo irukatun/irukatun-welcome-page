@@ -1,6 +1,6 @@
 // Service Worker for Cache Management
-const CACHE_NAME = 'irukatun-welcome-v1.2.0';
-const STATIC_CACHE = 'static-v1.2.0';
+const CACHE_NAME = 'irukatun-welcome-v1.3.1.1';
+const STATIC_CACHE = 'static-v1.3.1.1';
 
 // 需要緩存的資源
 const CACHE_URLS = [

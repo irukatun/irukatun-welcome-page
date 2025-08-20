@@ -10,23 +10,30 @@ if [ $# -eq 0 ]; then
 fi
 
 NEW_VERSION=$1
-CURRENT_DATE=$(date +"%Y-%m-%d %H:%M:%S")
+TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 
 echo "正在更新版本至 $NEW_VERSION..."
 
 # 更新 HTML 文件中的版本號
+sed -i "s/v=[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+/v=$NEW_VERSION/g" index.html
 sed -i "s/v=[0-9]\+\.[0-9]\+\.[0-9]\+/v=$NEW_VERSION/g" index.html
+sed -i "s/content=\"[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\"/content=\"$NEW_VERSION\"/g" index.html
 sed -i "s/content=\"[0-9]\+\.[0-9]\+\.[0-9]\+\"/content=\"$NEW_VERSION\"/g" index.html
+sed -i "s/id=\"version-display\">[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+</id=\"version-display\">$NEW_VERSION</g" index.html
+sed -i "s/id=\"version-display\">[0-9]\+\.[0-9]\+\.[0-9]\+</id=\"version-display\">$NEW_VERSION</g" index.html
+sed -i "s/id=\"version-date\">[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}[^<]*/id=\"version-date\">$TIMESTAMP/g" index.html
 
-# 更新 JavaScript 文件中的版本號
+# 更新 JavaScript 文件中的版本號和日期
+sed -i "s/CURRENT_VERSION = '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+'/CURRENT_VERSION = '$NEW_VERSION'/g" script.js
 sed -i "s/CURRENT_VERSION = '[0-9]\+\.[0-9]\+\.[0-9]\+'/CURRENT_VERSION = '$NEW_VERSION'/g" script.js
+sed -i "s/CURRENT_VERSION_DATE = '[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}[^']*'/CURRENT_VERSION_DATE = '$TIMESTAMP'/g" script.js
 
 # 更新 Service Worker 中的版本號
 sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/v$NEW_VERSION/g" sw.js
 
 echo "版本更新完成！"
 echo "新版本: $NEW_VERSION"
-echo "更新時間: $CURRENT_DATE"
+echo "更新時間: $TIMESTAMP"
 echo ""
 echo "請記得："
 echo "1. 提交並推送更改到git倉庫"

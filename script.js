@@ -1,5 +1,6 @@
 // 版本管理系統
-const CURRENT_VERSION = '1.2.0';
+const CURRENT_VERSION = '1.3.1';
+const CURRENT_VERSION_DATE = '2025-08-20 12:56:19';
 
 // 檢查版本更新
 function checkForUpdates() {
@@ -67,6 +68,16 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(`%c🚀 irukatun.dev v${CURRENT_VERSION}`, 'color: #87CEEB; font-size: 16px; font-weight: bold;');
     console.log('%c網站已載入最新版本', 'color: #4A90A4; font-size: 12px;');
     console.log('%c使用 Ctrl+Shift+R 可強制刷新並清除快取', 'color: #2E86AB; font-size: 10px;');
+    
+    // 更新頁面上的版本顯示
+    const versionDisplay = document.getElementById('version-display');
+    const versionDate = document.getElementById('version-date');
+    if (versionDisplay) {
+        versionDisplay.textContent = CURRENT_VERSION;
+    }
+    if (versionDate) {
+        versionDate.textContent = CURRENT_VERSION_DATE;
+    }
     
     // 初始化版本檢查
     checkForUpdates();
