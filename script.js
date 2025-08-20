@@ -1,74 +1,9 @@
-// 版本管理系統
-const CURRENT_VERSION = '1.3.12';
-const CURRENT_VERSION_DATE = '2025-08-20 22:06:33';
-
-// 檢查版本更新
-function checkForUpdates() {
-    // 檢查localStorage中的版本
-    const savedVersion = localStorage.getItem('website-version');
-    
-    if (savedVersion !== CURRENT_VERSION) {
-        // 版本不匹配，清除可能的舊緩存
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                for(let registration of registrations) {
-                    registration.unregister();
-                }
-            });
-        }
-        
-        // 清除localStorage中可能的舊數據（保留主題設置）
-        const theme = localStorage.getItem('theme');
-        localStorage.clear();
-        if (theme) {
-            localStorage.setItem('theme', theme);
-        }
-        
-        // 更新版本號
-        localStorage.setItem('website-version', CURRENT_VERSION);
-        
-        console.log(`網站已更新至版本 ${CURRENT_VERSION}`);
-    }
-}
-
-// 定期檢查更新（每5分鐘檢查一次）
-function startUpdateChecker() {
-    setInterval(async () => {
-        try {
-            // 通過檢查HTML文件的版本meta標籤來確認服務器版本
-            const response = await fetch(window.location.href, {
-                method: 'HEAD',
-                cache: 'no-cache'
-            });
-            
-            if (response.ok) {
-                // 如果響應成功，重新檢查版本
-                const htmlResponse = await fetch(window.location.href, {
-                    cache: 'no-cache'
-                });
-                const htmlText = await htmlResponse.text();
-                const versionMatch = htmlText.match(/<meta name="version" content="([^"]+)"/);
-                
-                if (versionMatch && versionMatch[1] !== CURRENT_VERSION) {
-                    // 發現新版本，提示用戶刷新
-                    if (confirm('網站有新版本可用！是否立即刷新頁面以獲取最新內容？')) {
-                        window.location.reload(true);
-                    }
-                }
-            }
-        } catch (error) {
-            console.log('版本檢查失敗:', error);
-        }
-    }, 5 * 60 * 1000); // 5分鐘
-}
+// 版本資訊（僅用於顯示）
+const CURRENT_VERSION = window.VERSION_CONFIG ? window.VERSION_CONFIG.VERSION : '1.3.12';
+const CURRENT_VERSION_DATE = window.VERSION_CONFIG ? window.VERSION_CONFIG.BUILD_DATE : '2025-08-20 22:06:33';
 
 // 等待 DOM 完全載入後再執行
 document.addEventListener('DOMContentLoaded', function() {
-    // 顯示版本信息
-    console.log(`%c🚀 irukatun.dev v${CURRENT_VERSION}`, 'color: #87CEEB; font-size: 16px; font-weight: bold;');
-    console.log('%c網站已載入最新版本', 'color: #4A90A4; font-size: 12px;');
-    console.log('%c使用 Ctrl+Shift+R 可強制刷新並清除快取', 'color: #2E86AB; font-size: 10px;');
-    
     // 更新頁面上的版本顯示
     const versionDisplay = document.getElementById('version-display');
     const versionDate = document.getElementById('version-date');
@@ -78,10 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (versionDate) {
         versionDate.textContent = CURRENT_VERSION_DATE;
     }
-    
-    // 初始化版本檢查
-    checkForUpdates();
-    startUpdateChecker();
     
     // 主題切換功能
     initThemeToggle();
@@ -362,75 +293,6 @@ window.directRedirect = function(url) {
 window.showRedirectModal = function(url) {
     // 直接跳轉，不再顯示模態框
     window.directRedirect(url);
-};
-
-// 清除所有快取的函數
-window.clearAllCache = function() {
-    return new Promise((resolve) => {
-        // 清除瀏覽器快取
-        if ('caches' in window) {
-            caches.keys().then(cacheNames => {
-                return Promise.all(
-                    cacheNames.map(cacheName => {
-                        return caches.delete(cacheName);
-                    })
-                );
-            }).then(() => {
-                console.log('瀏覽器快取已清除');
-            });
-        }
-        
-        // 發送消息給Service Worker清除快取
-        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-            navigator.serviceWorker.controller.postMessage({
-                type: 'CLEAR_CACHE'
-            });
-        }
-        
-        // 清除localStorage（保留主題設置）
-        const theme = localStorage.getItem('theme');
-        localStorage.clear();
-        if (theme) {
-            localStorage.setItem('theme', theme);
-        }
-        
-        // 清除sessionStorage
-        sessionStorage.clear();
-        
-        console.log('所有快取已清除');
-        resolve();
-    });
-};
-
-// 強制刷新頁面的函數
-window.forceRefresh = function() {
-    window.clearAllCache().then(() => {
-        // 強制刷新頁面，忽略快取
-        window.location.reload(true);
-    });
-};
-
-// 添加鍵盤快捷鍵用於開發者快速清除快取 (Ctrl+Shift+R)
-document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.shiftKey && e.key === 'R') {
-        e.preventDefault();
-        if (confirm('確定要清除所有快取並強制刷新頁面嗎？')) {
-            window.forceRefresh();
-        }
-    }
-});
-
-// 授權訪問確認（Remote Access 與 Jupyter Notebook 分流）
-window.confirmAuthorizedRedirect = function(url, label) {
-    const serviceLabel = label || '目標服務';
-    const confirmed = confirm(
-        '⚠️ 僅限具有權限的用戶訪問' +
-        '\n\n此服務僅開放給已授權或受邀使用者，未經授權的嘗試可能被記錄。' +
-        '\n\n是否要繼續前往 ' + serviceLabel + '？'
-    );
-    if (confirmed) {
-        window.directRedirect(url);
-    }
 };
 
 // 主題切換功能
