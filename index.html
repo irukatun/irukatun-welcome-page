@@ -22,13 +22,24 @@
 </head>
 <body>
     <div class="container">
+        <!-- 暗色模式切換按鈕 -->
+        <div class="theme-toggle">
+            <button id="theme-toggle-btn" class="theme-toggle-btn" title="切換主題">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+
         <!-- 主要內容卡片 -->
         <div class="main-card">
             <!-- 頭像 -->
             <div class="avatar">
-                   <a href="https://zcs.irukatun.dev" target="_blank" rel="noopener" id="avatar-link">
-                       <img src="avatar.jpg" alt="頭像" class="avatar-image">
-                   </a>
+                <a href="https://zcs.irukatun.dev" target="_blank" rel="noopener" id="avatar-link" class="avatar-link">
+                    <img src="avatar.jpg" alt="頭像" class="avatar-image">
+                    <div class="avatar-overlay">
+                        <i class="fas fa-user"></i>
+                        <span>個人介紹</span>
+                    </div>
+                </a>
             </div>
 
             <!-- 網域名稱 -->
@@ -129,7 +140,7 @@
                                 <p>點擊進入輕量遠端測試及開發環境</p>
                             </div>
                         </div>
-                        <div class="service-item remote-service" onclick="confirmAuthorizedRedirect('https://remote.irukatun.dev','Remote Access')">
+                        <div class="service-item remote-service" onclick="directRedirect('https://remote.irukatun.dev')">
                             <div class="service-icon">
                                 <i class="fas fa-network-wired"></i>
                             </div>
@@ -181,7 +192,7 @@
                 </div>
                 <div class="modal-content">
                     <div class="jupyter-options">
-                        <div class="jupyter-option" onclick="confirmAuthorizedRedirect('https://jupyter-lite.irukatun.dev','Jupyter Lite')">
+                        <div class="jupyter-option" onclick="directRedirect('https://jupyter-lite.irukatun.dev')">
                             <div class="option-header">
                                 <div class="option-icon">
                                     <i class="fas fa-laptop"></i>
@@ -212,7 +223,7 @@
                             <p class="option-description">適合日常開發和學習使用</p>
                         </div>
                         
-                        <div class="jupyter-option" onclick="confirmAuthorizedRedirect('https://jupyter-pro.irukatun.dev','Jupyter Pro')">
+                        <div class="jupyter-option" onclick="directRedirect('https://jupyter-pro.irukatun.dev')">
                             <div class="option-header">
                                 <div class="option-icon">
                                     <i class="fas fa-rocket"></i>

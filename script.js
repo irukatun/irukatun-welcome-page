@@ -1,5 +1,8 @@
 // 等待 DOM 完全載入後再執行
 document.addEventListener('DOMContentLoaded', function() {
+    // 主題切換功能
+    initThemeToggle();
+    
     // DOM 元素
     const servicesButton = document.querySelector(".services-button");
     const modalOverlay = document.getElementById("modalOverlay");
@@ -179,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.directRedirect("https://irukatun.dev");
                     break;
                 case "jupyter":
-                    window.confirmAuthorizedRedirect("https://jupyter-lite.irukatun.dev","Jupyter Lite");
+                    window.directRedirect("https://jupyter-lite.irukatun.dev");
                     break;
             }
         });
@@ -290,3 +293,51 @@ window.confirmAuthorizedRedirect = function(url, label) {
         window.directRedirect(url);
     }
 };
+
+// 主題切換功能
+function initThemeToggle() {
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    // 檢測系統主題偏好
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // 獲取保存的主題或使用系統偏好
+    let currentTheme = localStorage.getItem('theme');
+    if (!currentTheme) {
+        currentTheme = prefersDarkMode ? 'dark' : 'light';
+    }
+    
+    // 應用主題
+    setTheme(currentTheme);
+    
+    // 添加點擊事件
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(currentTheme);
+            localStorage.setItem('theme', currentTheme);
+        });
+    }
+    
+    // 監聽系統主題變化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // 如果用戶沒有手動設置過主題，則跟隨系統
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            setTheme(newTheme);
+        }
+    });
+    
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        if (themeIcon) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+        }
+    }
+}
