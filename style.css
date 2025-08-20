@@ -35,89 +35,6 @@ body {
     padding: 20px 0;
 }
 
-/* 背景幾何圖形 */
-.background-shapes {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.shape {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: float 6s ease-in-out infinite;
-}
-
-.shape-1 {
-    width: 220px;
-    height: 220px;
-    top: 10%;
-    left: 10%;
-    transform: rotate(45deg);
-    animation-delay: 0s;
-}
-
-.shape-2 {
-    width: 170px;
-    height: 170px;
-    top: 20%;
-    right: 15%;
-    transform: rotate(30deg);
-    animation-delay: 1s;
-}
-
-.shape-3 {
-    width: 200px;
-    height: 200px;
-    bottom: 20%;
-    left: 20%;
-    transform: rotate(60deg);
-    animation-delay: 2s;
-}
-
-.shape-4 {
-    width: 140px;
-    height: 140px;
-    bottom: 15%;
-    right: 10%;
-    transform: rotate(15deg);
-    animation-delay: 3s;
-}
-
-.shape-5 {
-    width: 120px;
-    height: 120px;
-    top: 50%;
-    left: 5%;
-    transform: rotate(75deg);
-    animation-delay: 4s;
-}
-
-.shape-6 {
-    width: 180px;
-    height: 180px;
-    top: 30%;
-    right: 30%;
-    transform: rotate(90deg);
-    animation-delay: 5s;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px) rotate(var(--rotation, 0deg));
-    }
-    50% {
-        transform: translateY(-20px) rotate(calc(var(--rotation, 0deg) + 10deg));
-    }
-}
-
 /* 主要內容卡片 */
 .main-card {
     position: relative;
@@ -829,10 +746,6 @@ body {
         width: 50px;
         height: 50px;
         font-size: 20px;
-    }
-    
-    .shape {
-        opacity: 0.6;
     }
     
     .button-container {

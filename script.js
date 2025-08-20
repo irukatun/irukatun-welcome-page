@@ -138,12 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(animateStatusDots, 1000);
     }
 
-    // 背景圖形動畫增強
-    const shapes = document.querySelectorAll(".shape");
-    shapes.forEach((shape, index) => {
-        shape.style.setProperty("--rotation", `${index * 45}deg`);
-    });
-
     // 主卡片進入動畫
     if (mainCard) {
         window.addEventListener("load", () => {
@@ -188,21 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.confirmAuthorizedRedirect("https://jupyter-lite.irukatun.dev","Jupyter Lite");
                     break;
             }
-        });
-    });
-
-    // 添加滑鼠移動視差效果
-    document.addEventListener("mousemove", (e) => {
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-        
-        shapes.forEach((shape, index) => {
-            const speed = (index + 1) * 0.5;
-            const x = (mouseX - 0.5) * speed;
-            const y = (mouseY - 0.5) * speed;
-            
-            // 重新啟用滑鼠跟隨效果
-            shape.style.transform = `translate(${x}px, ${y}px) rotate(var(--rotation, 0deg))`;
         });
     });
 
