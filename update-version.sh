@@ -38,14 +38,8 @@ sed -i "s/CURRENT_VERSION = '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+'/CURRENT_VERSION
 sed -i "s/CURRENT_VERSION = '[0-9]\+\.[0-9]\+\.[0-9]\+'/CURRENT_VERSION = '$NEW_VERSION'/g" script.js
 sed -i "s/CURRENT_VERSION_DATE = '[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}[^']*'/CURRENT_VERSION_DATE = '$TIMESTAMP'/g" script.js
 
-# 更新 Service Worker 中的版本號
-# 更新緩存名稱
-sed -i "s/irukatun-welcome-v[0-9]\+\.[0-9]\+\.[0-9]\+/irukatun-welcome-v$NEW_VERSION/g" sw.js
-sed -i "s/static-v[0-9]\+\.[0-9]\+\.[0-9]\+/static-v$NEW_VERSION/g" sw.js
 # 更新版本配置文件中的版本號
 sed -i "s/v=[0-9]\+\.[0-9]\+\.[0-9]\+/v=$NEW_VERSION/g" version-config.js
-# 更新資源版本號
-sed -i "s/v=[0-9]\+\.[0-9]\+\.[0-9]\+/v=$NEW_VERSION/g" sw.js
 
 echo "版本更新完成！"
 echo "新版本: $NEW_VERSION"
