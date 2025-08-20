@@ -1,6 +1,6 @@
 // 版本管理系統
-const CURRENT_VERSION = '1.3.8';
-const CURRENT_VERSION_DATE = '2025-08-20 21:32:48';
+const CURRENT_VERSION = '1.3.9';
+const CURRENT_VERSION_DATE = '2025-08-20 21:35:28';
 
 // 檢查版本更新
 function checkForUpdates() {
