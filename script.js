@@ -4,15 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const servicesButton = document.querySelector(".services-button");
     const modalOverlay = document.getElementById("modalOverlay");
     const jupyterModalOverlay = document.getElementById("jupyterModalOverlay");
-    const redirectModalOverlay = document.getElementById("redirectModalOverlay");
     const closeBtn = document.getElementById("closeBtn");
     const mainCard = document.querySelector(".main-card");
     const wakeButton = document.querySelector(".wake-button");
-    
-    // 跳轉相關變量
-    let redirectTimer = null;
-    let countdownTimer = null;
-    let targetUrl = '';
 
     // 檢查必要元素是否存在
     if (!servicesButton) {
@@ -76,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 wakeButton.style.transform = "";
             }, 150);
             
-            // 使用跳轉提示
-            window.showRedirectModal("https://control.irukatun.dev");
+            // 直接跳轉
+            window.directRedirect("https://control.irukatun.dev");
         });
     }
     
@@ -93,8 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 statusButton.style.transform = "";
             }, 150);
             
-            // 使用跳轉提示
-            window.showRedirectModal("https://status.irukatun.dev");
+            // 直接跳轉
+            window.directRedirect("https://status.irukatun.dev");
         });
     }
 
@@ -114,14 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    if (redirectModalOverlay) {
-        redirectModalOverlay.addEventListener("click", (e) => {
-            if (e.target === redirectModalOverlay) {
-                window.cancelRedirect();
-            }
-        });
-    }
 
     // ESC 鍵關閉彈出框 - 添加安全檢查
     document.addEventListener("keydown", (e) => {
@@ -131,9 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (jupyterModalOverlay && jupyterModalOverlay.classList.contains("active")) {
                 closeJupyterModal();
-            }
-            if (redirectModalOverlay && redirectModalOverlay.classList.contains("active")) {
-                window.cancelRedirect();
             }
         }
     });
@@ -192,14 +175,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
             switch(linkType) {
                 case "github":
-                    window.showRedirectModal("https://github.com/irukatun");
+                    window.directRedirect("https://github.com/irukatun");
                     break;
                 case "email":
                     // Email 不需要跳轉提示，直接執行
                     window.location.href = "mailto:support@irukatun.dev";
                     break;
                 case "website":
-                    window.showRedirectModal("https://irukatun.dev");
+                    window.directRedirect("https://irukatun.dev");
                     break;
                 case "jupyter":
                     window.confirmAuthorizedRedirect("https://jupyter-lite.irukatun.dev","Jupyter Lite");
@@ -278,7 +261,7 @@ window.confirmDashboardAccess = function() {
     const confirmed = confirm("⚠️ 您即將進入服務狀態的後台管理介面\n\n這是管理員專用頁面，可能不是您該去的地方。\n\n確定要繼續嗎？");
     
     if (confirmed) {
-        window.showRedirectModal('https://status.irukatun.dev/dashboard');
+        window.directRedirect('https://status.irukatun.dev/dashboard');
     }
 };
 
@@ -305,102 +288,15 @@ window.closeJupyterModal = function() {
 };
 
 // 添加跳轉相關的全局函數
+// 直接跳轉函數（無延遲）
+window.directRedirect = function(url) {
+    window.open(url, '_blank', 'noopener,noreferrer');
+};
+
+// 保留原有的跳轉模態框函數（可選保留，以防需要）
 window.showRedirectModal = function(url) {
-    const redirectModalOverlay = document.getElementById("redirectModalOverlay");
-    const redirectUrlElement = document.getElementById('redirectUrl');
-    const countdownElement = document.getElementById('countdown');
-    const progressFill = document.getElementById('progressFill');
-    
-    if (redirectUrlElement) {
-        redirectUrlElement.textContent = url;
-    }
-    
-    // 關閉其他模態框
-    const modalOverlay = document.getElementById("modalOverlay");
-    const jupyterModalOverlay = document.getElementById("jupyterModalOverlay");
-    
-    if (modalOverlay) modalOverlay.classList.remove("active");
-    if (jupyterModalOverlay) jupyterModalOverlay.classList.remove("active");
-    
-    // 顯示跳轉模態框
-    if (redirectModalOverlay) {
-        redirectModalOverlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-    }
-    
-    // 重置進度條和倒計時
-    if (progressFill) {
-        progressFill.style.animation = 'none';
-        progressFill.offsetHeight; // 強制重繪
-        progressFill.style.animation = 'progressAnimation 3s linear forwards';
-    }
-    
-    let countdown = 3;
-    if (countdownElement) {
-        countdownElement.textContent = countdown;
-    }
-    
-    // 清除現有的計時器
-    if (window.redirectTimer) clearTimeout(window.redirectTimer);
-    if (window.countdownTimer) clearInterval(window.countdownTimer);
-    
-    // 保存目標URL到全局變量 - 在這裡就設定
-    window.targetUrl = url;
-    
-    // 開始倒計時
-    window.countdownTimer = setInterval(() => {
-        countdown--;
-        if (countdownElement) {
-            countdownElement.textContent = countdown;
-        }
-        if (countdown <= 0) {
-            clearInterval(window.countdownTimer);
-        }
-    }, 1000);
-    
-    // 3秒後自動跳轉
-    window.redirectTimer = setTimeout(() => {
-        if (window.targetUrl) {
-            window.open(window.targetUrl, '_blank', 'noopener,noreferrer');
-        }
-        window.closeRedirectModal();
-    }, 3000);
-};
-
-window.cancelRedirect = function() {
-    if (window.redirectTimer) {
-        clearTimeout(window.redirectTimer);
-        window.redirectTimer = null;
-    }
-    if (window.countdownTimer) {
-        clearInterval(window.countdownTimer);
-        window.countdownTimer = null;
-    }
-    window.closeRedirectModal();
-};
-
-window.continueRedirect = function() {
-    if (window.redirectTimer) {
-        clearTimeout(window.redirectTimer);
-        window.redirectTimer = null;
-    }
-    if (window.countdownTimer) {
-        clearInterval(window.countdownTimer);
-        window.countdownTimer = null;
-    }
-    if (window.targetUrl) {
-        window.open(window.targetUrl, '_blank', 'noopener,noreferrer');
-    }
-    window.closeRedirectModal();
-};
-
-window.closeRedirectModal = function() {
-    const redirectModalOverlay = document.getElementById("redirectModalOverlay");
-    if (redirectModalOverlay) {
-        redirectModalOverlay.classList.remove("active");
-    }
-    document.body.style.overflow = "auto";
-    window.targetUrl = '';
+    // 直接跳轉，不再顯示模態框
+    window.directRedirect(url);
 };
 
 // 授權訪問確認（Remote Access 與 Jupyter Notebook 分流）
@@ -412,6 +308,6 @@ window.confirmAuthorizedRedirect = function(url, label) {
         '\n\n是否要繼續前往 ' + serviceLabel + '？'
     );
     if (confirmed) {
-        window.showRedirectModal(url);
+        window.directRedirect(url);
     }
 };

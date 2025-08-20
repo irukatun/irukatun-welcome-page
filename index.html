@@ -148,7 +148,7 @@
                                 <p>點擊進入遠端連線管理介面</p>
                             </div>
                         </div>
-                        <div class="service-item minecraft-service" onclick="showRedirectModal('https://dreos-mc.irukatun.dev')">
+                        <div class="service-item minecraft-service" onclick="directRedirect('https://dreos-mc.irukatun.dev')">
                             <div class="service-icon">
                                 <i class="fas fa-gamepad"></i>
                             </div>
@@ -257,39 +257,6 @@
             </div>
         </div>
 
-        <!-- 跳轉提示彈出框 -->
-        <div class="modal-overlay" id="redirectModalOverlay">
-            <div class="modal redirect-modal">
-                <div class="redirect-content">
-                    <div class="redirect-icon">
-                        <i class="fas fa-external-link-alt"></i>
-                    </div>
-                    <h3 class="redirect-title">正在跳轉中...</h3>
-                    <p class="redirect-description">即將前往外部服務</p>
-                    <div class="redirect-url" id="redirectUrl"></div>
-                    
-                    <div class="redirect-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill"></div>
-                        </div>
-                        <div class="progress-text">
-                            <span id="countdown">3</span> 秒後自動跳轉
-                        </div>
-                    </div>
-                    
-                    <div class="redirect-buttons">
-                        <button class="redirect-btn cancel-btn" onclick="cancelRedirect()">
-                            <i class="fas fa-times"></i>
-                            取消
-                        </button>
-                        <button class="redirect-btn continue-btn" onclick="continueRedirect()">
-                            <i class="fas fa-arrow-right"></i>
-                            立即前往
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="script.js"></script>
