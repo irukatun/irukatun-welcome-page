@@ -1,6 +1,10 @@
-// 版本資訊（僅用於顯示）
-const CURRENT_VERSION = window.VERSION_CONFIG ? window.VERSION_CONFIG.VERSION : '1.3.12';
-const CURRENT_VERSION_DATE = window.VERSION_CONFIG ? window.VERSION_CONFIG.BUILD_DATE : '2025-08-20 22:06:33';
+// === 版本配置 - 唯一版本來源 ===
+const APP_VERSION = '1.3.20-release';
+const BUILD_DATE = '2025-08-20 22:49:56';
+
+// 版本資訊（從上方配置讀取）
+const CURRENT_VERSION = APP_VERSION;
+const CURRENT_VERSION_DATE = BUILD_DATE;
 
 // 等待 DOM 完全載入後再執行
 document.addEventListener('DOMContentLoaded', function() {
