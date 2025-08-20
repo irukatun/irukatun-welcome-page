@@ -10,7 +10,7 @@ if [ $# -eq 0 ]; then
 fi
 
 NEW_VERSION=$1
-TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+TIMESTAMP=$(TZ='Asia/Taipei' date +"%Y-%m-%d %H:%M:%S")
 
 echo "正在更新版本至 $NEW_VERSION..."
 

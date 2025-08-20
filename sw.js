@@ -1,15 +1,15 @@
 // Service Worker for Cache Management
-const CACHE_NAME = 'irukatun-welcome-v1.3.4';
-const STATIC_CACHE = 'static-v1.3.4';
+const CACHE_NAME = 'irukatun-welcome-v1.3.8';
+const STATIC_CACHE = 'static-v1.3.8';
 
 // 需要緩存的資源
 const CACHE_URLS = [
     '/',
     '/index.html',
-    '/style.css?v=1.3.4',
-    '/script.js?v=1.3.4',
-    '/avatar.jpg?v=1.3.4',
-    '/favicon.png?v=1.3.4'
+    '/style.css?v=1.3.8',
+    '/script.js?v=1.3.8',
+    '/avatar.jpg?v=1.3.8',
+    '/favicon.png?v=1.3.8'
 ];
 
 // 安裝Service Worker
