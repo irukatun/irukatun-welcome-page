@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Cache Control -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="version" content="1.2.0">
 
   <!-- SEO -->
   <title>irukatun.dev - 豚豚的線上服務公開網域</title>
@@ -16,8 +22,8 @@
   <meta property="og:type" content="website" />
 
   <!-- Icon & Styles -->
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.png?v=1.2.0" type="image/png">
+  <link rel="stylesheet" href="style.css?v=1.2.0">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -34,7 +40,7 @@
             <!-- 頭像 -->
             <div class="avatar">
                 <a href="https://zcs.irukatun.dev" target="_blank" rel="noopener" id="avatar-link" class="avatar-link">
-                    <img src="avatar.jpg" alt="頭像" class="avatar-image">
+                    <img src="avatar.jpg?v=1.2.0" alt="頭像" class="avatar-image">
                     <div class="avatar-overlay">
                         <i class="fas fa-user"></i>
                         <span>個人介紹</span>
@@ -260,7 +266,32 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=1.2.0"></script>
+    
+    <!-- Service Worker 註冊 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker 註冊成功');
+                        
+                        // 監聽更新
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('新版本可用，準備更新...');
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.log('Service Worker 註冊失敗:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
 
