@@ -1,8 +1,3 @@
 # irukatun.dev 歡迎頁面
 
-## 瀏覽器支援
-
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
+這是豚豚的線上服務公開網站主頁-[快速傳送!](https://www.irukatun.dev/)

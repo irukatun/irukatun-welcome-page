@@ -311,6 +311,9 @@ body {
     color: white;
 }
 
+/* LLM 對話服務特殊樣式 */
+/* 保持AI對話服務懸停時圖標不變色 */
+
 .jupyter-logo {
     width: 24px;
     height: 24px;
@@ -723,6 +726,92 @@ body {
     box-shadow: none;
 }
 
+/* 尚未開放紅色標記 */
+.coming-soon-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+/* 正常服務中綠色標記 */
+.service-active-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: #10b981;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+/* API存取黃色標記 */
+.service-api-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: #f59e0b;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+/* Jupyter配置選擇項目樣式調整 */
+.jupyter-option {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--button-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--button-border);
+    border-radius: 15px;
+    padding: 15px 20px;
+    transition: all 0.3s ease;
+}
+
+.jupyter-option:hover {
+    transform: translateY(-3px);
+    background: var(--button-hover-bg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 禁止點擊的Jupyter選項樣式 */
+.jupyter-option.coming-soon-service {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.jupyter-option.coming-soon-service:hover {
+    transform: none;
+    background: var(--button-bg);
+    box-shadow: none;
+}
+
+/* API存取模型樣式 */
+.jupyter-option.api-access-service {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.jupyter-option.api-access-service:hover {
+    transform: none;
+    background: var(--button-bg);
+    box-shadow: none;
+}
+
 .service-icon {
     width: 50px;
     height: 50px;
@@ -774,28 +863,10 @@ body {
     gap: 20px;
 }
 
-.jupyter-option {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    background: var(--button-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--button-border);
-    border-radius: 15px;
-    padding: 20px;
-    transition: all 0.3s ease;
-}
-
-.jupyter-option:hover {
-    transform: translateY(-3px);
-    background: var(--button-hover-bg);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
 .option-header {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .option-icon {
@@ -840,11 +911,40 @@ body {
     background: linear-gradient(45deg, #FFB6C1, #FF69B4);
 }
 
+/* LLM量化標籤 */
+.option-badge.quantization {
+    background: linear-gradient(45deg, #87CEEB, #4A90A4);
+}
+
+/* 上下文長度標記 */
+.context-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(45deg, #10b981, #059669);
+    margin-left: 8px;
+}
+
+/* MOE標記 */
+.moe-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(45deg, #FFB6C1, #FF69B4);
+    margin-left: 8px;
+}
+
 .option-specs {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 0;
 }
 
 .spec-item {

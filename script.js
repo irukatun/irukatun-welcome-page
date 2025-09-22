@@ -1,6 +1,6 @@
 // === 版本配置 - 唯一版本來源 ===
-const APP_VERSION = '1.3.21-hotfix';
-const BUILD_DATE = '2025-08-20 22:56:24';
+const APP_VERSION = '1.3.22-release';
+const BUILD_DATE = '2025-09-22 19:26:10';
 
 // 版本資訊（從上方配置讀取）
 const CURRENT_VERSION = APP_VERSION;
@@ -28,6 +28,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.getElementById("closeBtn");
     const mainCard = document.querySelector(".main-card");
     const wakeButton = document.querySelector(".wake-button");
+
+    // AI對話服務點擊開啟模型選擇彈窗
+    const llmChatService = document.querySelector('.llm-chat-service');
+    const llmModelModalOverlay = document.getElementById('llmModelModalOverlay');
+    if (llmChatService && llmModelModalOverlay) {
+        llmChatService.addEventListener('click', function(e) {
+            e.preventDefault();
+            // 關閉服務列表彈窗
+            if (modalOverlay) modalOverlay.classList.remove('active');
+            // 開啟模型選擇彈窗
+            llmModelModalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        // 點擊背景關閉模型選擇彈窗
+        llmModelModalOverlay.addEventListener('click', function(e) {
+            if (e.target === llmModelModalOverlay) {
+                llmModelModalOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
 
     // 檢查必要元素是否存在
     if (!servicesButton) {
@@ -139,6 +160,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (jupyterModalOverlay && jupyterModalOverlay.classList.contains("active")) {
                 closeJupyterModal();
             }
+            // 添加AI模型選擇彈窗的ESC關閉
+            const llmModelModalOverlay = document.getElementById("llmModelModalOverlay");
+            if (llmModelModalOverlay && llmModelModalOverlay.classList.contains("active")) {
+                window.closeLlmModelModal();
+            }
         }
     });
 
@@ -212,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.removeEventListener("mousemove", () => {});
         
         // 添加觸控反饋
-        const touchElements = document.querySelectorAll(".social-link, .services-button, .wake-button, .status-button, .close-btn");
+        const touchElements = document.querySelectorAll(".social-link, .services-button, .wake-button, .status-button, .close-btn, .service-item");
         touchElements.forEach(element => {
             element.addEventListener("touchstart", () => {
                 element.style.transform = "scale(0.95)";
@@ -262,6 +288,15 @@ window.confirmDashboardAccess = function() {
     
     if (confirmed) {
         window.directRedirect('https://status.irukatun.dev/dashboard');
+    }
+};
+
+// 關閉AI模型選擇彈窗
+window.closeLlmModelModal = function() {
+    const llmModelModalOverlay = document.getElementById('llmModelModalOverlay');
+    if (llmModelModalOverlay) {
+        llmModelModalOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
     }
 };
 

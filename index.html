@@ -8,7 +8,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="version" content="1.3.21-hotfix">
+  <meta name="version" content="1.3.22-release">
 
   <!-- SEO -->
   <title>irukatun.dev - 豚豚的線上服務公開網域</title>
@@ -22,8 +22,8 @@
   <meta property="og:type" content="website" />
 
   <!-- Icon & Styles -->
-  <link rel="icon" href="favicon.png?v=1.3.21-hotfix" type="image/png">
-  <link rel="stylesheet" href="style.css?v=1.3.21-hotfix">
+  <link rel="icon" href="favicon.png?v=1.3.22-release" type="image/png">
+  <link rel="stylesheet" href="style.css?v=1.3.22-release">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -40,7 +40,7 @@
             <!-- 頭像 -->
             <div class="avatar">
                 <a href="https://zcs.irukatun.dev" target="_blank" rel="noopener" id="avatar-link" class="avatar-link">
-                    <img src="avatar.jpg?v=1.3.21-hotfix" alt="頭像" class="avatar-image">
+                    <img src="avatar.jpg?v=1.3.22-release" alt="頭像" class="avatar-image">
                     <div class="avatar-overlay">
                         <i class="fas fa-user"></i>
                         <span>個人介紹</span>
@@ -125,8 +125,8 @@
             <!-- 版本資訊 -->
             <div class="version-info">
                 <div class="version-text">
-                    <div class="version-item">版本: <span id="version-display">1.3.21-hotfix</span></div>
-                    <div class="version-item">更新時間: <span id="version-date">2025-08-20 22:56:24</span></div>
+                    <div class="version-item">版本: <span id="version-display">1.3.22-release</span></div>
+                    <div class="version-item">更新時間: <span id="version-date">2025-09-22 19:26:10</span></div>
                 </div>
             </div>
 
@@ -145,22 +145,22 @@
                 </div>
                 <div class="modal-content">
                     <div class="services-list">
+                        <div class="service-item llm-chat-service">
+                            <div class="service-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="service-info">
+                                <h4>Iruka Chat</h4>
+                                <p>小型LLM對話實驗室</p>
+                            </div>
+                        </div>
                         <div class="service-item jupyter-service" onclick="openJupyterModal()">
                             <div class="service-icon">
                                 <i class="fas fa-book"></i>
                             </div>
                             <div class="service-info">
-                                <h4>Jupyter Notebook</h4>
-                                <p>點擊進入輕量遠端測試及開發環境</p>
-                            </div>
-                        </div>
-                        <div class="service-item remote-service" onclick="directRedirect('https://remote.irukatun.dev')">
-                            <div class="service-icon">
-                                <i class="fas fa-network-wired"></i>
-                            </div>
-                            <div class="service-info">
-                                <h4>Remote Access</h4>
-                                <p>點擊進入遠端連線管理介面</p>
+                                <h4>Jupyter IDE</h4>
+                                <p>輕量遠端代碼測試及開發環境</p>
                             </div>
                         </div>
                         <div class="service-item minecraft-service" onclick="directRedirect('https://dreos-mc.irukatun.dev')">
@@ -168,8 +168,8 @@
                                 <i class="fas fa-gamepad"></i>
                             </div>
                             <div class="service-info">
-                                <h4>DreamOS Minecraft Server</h4>
-                                <p>點擊進入 夢の起源MC伺服器 官方網站</p>
+                                <h4>DreamOS Server</h4>
+                                <p> 夢の起源Minecraft伺服器官方網站</p>
                             </div>
                         </div>
                         <div class="service-item coming-soon-service">
@@ -199,7 +199,7 @@
         <div class="modal-overlay" id="jupyterModalOverlay">
             <div class="modal jupyter-modal">
                 <div class="modal-header">
-                    <h3>選擇 Jupyter Notebook 配置</h3>
+                    <h3>選擇 Jupyter 配置</h3>
                     <button class="close-btn" onclick="closeJupyterModal()">
                         <i class="fas fa-times"></i>
                     </button>
@@ -219,11 +219,11 @@
                             <div class="option-specs">
                                 <div class="spec-item">
                                     <i class="fas fa-microchip"></i>
-                                    <span>AMD R5-5600</span>
+                                    <span>AMD Ryzen 5 5600</span>
                                 </div>
                                 <div class="spec-item">
                                     <i class="fas fa-tv"></i>
-                                    <span>RX 6600</span>
+                                    <span>AMD Radeon RX 6600 8G</span>
                                 </div>
                                 <div class="spec-item">
                                     <i class="fas fa-memory"></i>
@@ -234,7 +234,6 @@
                                     <span>CPython 3.12</span>
                                 </div>
                             </div>
-                            <p class="option-description">適合日常開發和學習使用</p>
                         </div>
                         
                         <div class="jupyter-option" onclick="directRedirect('https://jupyter-pro.irukatun.dev')">
@@ -250,11 +249,11 @@
                             <div class="option-specs">
                                 <div class="spec-item">
                                     <i class="fas fa-microchip"></i>
-                                    <span>Intel i7-14700KF</span>
+                                    <span>Intel Core i7-14700KF</span>
                                 </div>
                                 <div class="spec-item">
                                     <i class="fas fa-tv"></i>
-                                    <span>RTX 4070 Ti Super</span>
+                                    <span>NVIDIA GeForce RTX 4070 Ti Super 16G</span>
                                 </div>
                                 <div class="spec-item">
                                     <i class="fas fa-memory"></i>
@@ -265,7 +264,159 @@
                                     <span>CPython 3.12</span>
                                 </div>
                             </div>
-                            <p class="option-description">適合大型數據處理和機器學習</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI 模型選擇彈出框 -->
+        <div class="modal-overlay" id="llmModelModalOverlay">
+            <div class="modal jupyter-modal">
+                <div class="modal-header">
+                    <h3>選擇模型以開始進行對話</h3>
+                    <button class="close-btn" onclick="closeLlmModelModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-content">
+                    <div class="jupyter-options">
+                        <div class="jupyter-option" onclick="directRedirect('https://chat.irukatun.dev?model=Qwen3-4B-Q5_K_M')">
+                            <div class="service-active-badge">正常服務中</div>
+                            <div class="option-header">
+                                <div class="option-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="option-title">
+                                    <h4>Qwen3-4B</h4>
+                                    <span class="option-badge quantization">Q5_K_M</span>
+                                    <span class="context-badge">16K</span>
+                                </div>
+                            </div>
+                            <div class="option-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>AMD Radeon RX6600 8G</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Vulkan</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-terminal"></i>
+                                    <span>llama.cpp</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jupyter-option api-access-service">
+                            <div class="service-api-badge">請透過API存取</div>
+                            <div class="option-header">
+                                <div class="option-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="option-title">
+                                    <h4>Qwen3-30B-Thinking</h4>
+                                    <span class="option-badge quantization">Q4_K_M</span>
+                                    <span class="context-badge">AUTO</span>
+                                    <span class="moe-badge">MOE</span>
+                                </div>
+                            </div>
+                            <div class="option-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>NVIDIA GeForce RTX 4070 Ti Super 16G</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-cube"></i>
+                                    <span>CUDA</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-terminal"></i>
+                                    <span>Ollama</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jupyter-option api-access-service">
+                            <div class="service-api-badge">請透過API存取</div>
+                            <div class="option-header">
+                                <div class="option-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="option-title">
+                                    <h4>GPT-OSS-20B</h4>
+                                    <span class="option-badge quantization">MXFP4</span>
+                                    <span class="context-badge">AUTO</span>
+                                    <span class="moe-badge">MOE</span>
+                                </div>
+                            </div>
+                            <div class="option-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>NVIDIA GeForce RTX 4070 Ti Super 16G</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-cube"></i>
+                                    <span>CUDA</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-terminal"></i>
+                                    <span>Ollama</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jupyter-option coming-soon-service">
+                            <div class="coming-soon-badge">暫停開放</div>
+                            <div class="option-header">
+                                <div class="option-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="option-title">
+                                    <h4>Qwen2.5-3B</h4>
+                                    <span class="option-badge quantization">Q4_K_M</span>
+                                    <span class="context-badge">16K</span>
+                                </div>
+                            </div>
+                            <div class="option-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>AMD Radeon RX6600 8G</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Vulkan</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-terminal"></i>
+                                    <span>llama.cpp</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jupyter-option coming-soon-service">
+                            <div class="coming-soon-badge">暫停開放</div>
+                            <div class="option-header">
+                                <div class="option-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="option-title">
+                                    <h4>Qwen3-8B</h4>
+                                    <span class="option-badge quantization">Q4_K_M</span>
+                                    <span class="context-badge">8K</span>
+                                </div>
+                            </div>
+                            <div class="option-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>AMD Radeon RX6600 8G</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Vulkan</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-terminal"></i>
+                                    <span>llama.cpp</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -274,7 +425,7 @@
 
     </div>
 
-    <script src="script.js?v=1.3.21-hotfix"></script>
+    <script src="script.js?v=1.3.22-release"></script>
 </body>
 </html>
 
