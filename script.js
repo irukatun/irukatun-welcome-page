@@ -29,26 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainCard = document.querySelector(".main-card");
     const wakeButton = document.querySelector(".wake-button");
 
-    // AI對話服務點擊開啟模型選擇彈窗
-    const llmChatService = document.querySelector('.llm-chat-service');
-    const llmModelModalOverlay = document.getElementById('llmModelModalOverlay');
-    if (llmChatService && llmModelModalOverlay) {
-        llmChatService.addEventListener('click', function(e) {
-            e.preventDefault();
-            // 關閉服務列表彈窗
-            if (modalOverlay) modalOverlay.classList.remove('active');
-            // 開啟模型選擇彈窗
-            llmModelModalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-        // 點擊背景關閉模型選擇彈窗
-        llmModelModalOverlay.addEventListener('click', function(e) {
-            if (e.target === llmModelModalOverlay) {
-                llmModelModalOverlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-    }
+
 
     // 檢查必要元素是否存在
     if (!servicesButton) {
@@ -160,11 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (jupyterModalOverlay && jupyterModalOverlay.classList.contains("active")) {
                 closeJupyterModal();
             }
-            // 添加AI模型選擇彈窗的ESC關閉
-            const llmModelModalOverlay = document.getElementById("llmModelModalOverlay");
-            if (llmModelModalOverlay && llmModelModalOverlay.classList.contains("active")) {
-                window.closeLlmModelModal();
-            }
+
         }
     });
 
@@ -291,14 +268,7 @@ window.confirmDashboardAccess = function() {
     }
 };
 
-// 關閉AI模型選擇彈窗
-window.closeLlmModelModal = function() {
-    const llmModelModalOverlay = document.getElementById('llmModelModalOverlay');
-    if (llmModelModalOverlay) {
-        llmModelModalOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-};
+
 
 // 添加 Jupyter 相關的全局函數
 window.openJupyterModal = function() {

@@ -311,9 +311,6 @@ body {
     color: white;
 }
 
-/* LLM 對話服務特殊樣式 */
-/* 保持AI對話服務懸停時圖標不變色 */
-
 .jupyter-logo {
     width: 24px;
     height: 24px;
@@ -726,48 +723,6 @@ body {
     box-shadow: none;
 }
 
-/* 尚未開放紅色標記 - 模型選單右下角 */
-.coming-soon-badge {
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    background: #ef4444;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 4px;
-    z-index: 10;
-}
-
-/* 正常服務中綠色標記 - 模型選單右下角 */
-.service-active-badge {
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    background: #10b981;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 4px;
-    z-index: 10;
-}
-
-/* API存取黃色標記 - 模型選單右下角 */
-.service-api-badge {
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    background: #f59e0b;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 4px;
-    z-index: 10;
-}
-
 /* Jupyter 選單專用標記 - 右上角 */
 .jupyter-active-badge {
     position: absolute;
@@ -827,17 +782,7 @@ body {
     box-shadow: none;
 }
 
-/* API存取模型樣式 */
-.jupyter-option.api-access-service {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
 
-.jupyter-option.api-access-service:hover {
-    transform: none;
-    background: var(--button-bg);
-    box-shadow: none;
-}
 
 .service-icon {
     width: 50px;
@@ -938,34 +883,7 @@ body {
     background: linear-gradient(45deg, #FFB6C1, #FF69B4);
 }
 
-/* LLM量化標籤 */
-.option-badge.quantization {
-    background: linear-gradient(45deg, #87CEEB, #4A90A4);
-}
 
-/* 上下文長度標記 */
-.context-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: white;
-    background: linear-gradient(45deg, #10b981, #059669);
-    margin-left: 8px;
-}
-
-/* MOE標記 */
-.moe-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: white;
-    background: linear-gradient(45deg, #FFB6C1, #FF69B4);
-    margin-left: 8px;
-}
 
 .option-specs {
     display: flex;

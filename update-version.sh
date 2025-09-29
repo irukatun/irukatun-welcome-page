@@ -5,7 +5,7 @@
 
 if [ $# -eq 0 ]; then
     echo "請提供新版本號"
-    echo "使用方法: ./update-version.sh 2.1.1"
+    echo "使用方法: ./update-version.sh x.y.z-abcde"
     exit 1
 fi
 
