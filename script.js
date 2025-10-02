@@ -1,6 +1,6 @@
 // === 版本配置 - 唯一版本來源 ===
-const APP_VERSION = '1.3.24-release';
-const BUILD_DATE = '2025-09-30 02:29:11';
+const APP_VERSION = '1.3.25';
+const BUILD_DATE = '2025-10-02 18:12:50';
 
 // 版本資訊（從上方配置讀取）
 const CURRENT_VERSION = APP_VERSION;
