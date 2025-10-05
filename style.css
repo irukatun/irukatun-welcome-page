@@ -54,7 +54,6 @@ body {
 
 /* 針對英文部分應用 Caveat 字體 */
 .domain-name,
-.service-tags,
 .coming-soon,
 .copyright,
 .social-link {
@@ -538,21 +537,6 @@ body {
     font-style: normal;
     font-weight: normal;
     font-family: "Caveat", cursive, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* 帳號中心尚未啟用標記 */
-.account-inactive-badge {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    background: #ef4444;
-    color: white;
-    font-size: 0.55rem;
-    font-weight: 600;
-    padding: 1px 4px;
-    border-radius: 3px;
-    z-index: 10;
-    box-shadow: 0 1px 3px rgba(239, 68, 68, 0.3);
 }
 
 /* 版權資訊 */

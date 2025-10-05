@@ -1,6 +1,6 @@
 // === 版本配置 - 唯一版本來源 ===
-const APP_VERSION = '1.3.27';
-const BUILD_DATE = '2025-10-03 20:25:06';
+const APP_VERSION = '1.3.28';
+const BUILD_DATE = '2025-10-05 18:15:34';
 
 // 版本資訊（從上方配置讀取）
 const CURRENT_VERSION = APP_VERSION;
@@ -70,7 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (jupyterModalOverlay) {
             jupyterModalOverlay.classList.remove("active");
         }
-        document.body.style.overflow = "auto";
+        // 重新打開服務列表
+        if (modalOverlay) {
+            modalOverlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
     }
 
     // 事件監聽器 - 添加安全檢查
@@ -286,9 +290,15 @@ window.openJupyterModal = function() {
 
 window.closeJupyterModal = function() {
     const jupyterModalOverlay = document.getElementById("jupyterModalOverlay");
+    const modalOverlay = document.getElementById("modalOverlay");
+    
     if (jupyterModalOverlay) {
         jupyterModalOverlay.classList.remove("active");
-        document.body.style.overflow = "auto";
+    }
+    // 重新打開服務列表
+    if (modalOverlay) {
+        modalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
     }
 };
 
