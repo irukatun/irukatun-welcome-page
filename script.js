@@ -1,6 +1,22 @@
+// === 載入動畫控制 ===
+// 頁面載入完成後隱藏載入動畫
+window.addEventListener('load', function() {
+    const loaderWrapper = document.getElementById('loaderWrapper');
+    if (loaderWrapper) {
+        // 延長顯示時間以展示完整動畫效果（最少1.5秒）
+        setTimeout(() => {
+            loaderWrapper.classList.add('hidden');
+            // 完全移除元素以避免干擾
+            setTimeout(() => {
+                loaderWrapper.style.display = 'none';
+            }, 800);
+        }, 1500);
+    }
+});
+
 // === 版本配置 - 唯一版本來源 ===
-const APP_VERSION = '1.3.28';
-const BUILD_DATE = '2025-10-05 18:15:34';
+const APP_VERSION = '1.3.30';
+const BUILD_DATE = '2025-10-05 23:12:08';
 
 // 版本資訊（從上方配置讀取）
 const CURRENT_VERSION = APP_VERSION;
@@ -179,6 +195,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         });
     }
+    
+    // 頭像自動縮放提示動畫
+    const avatarLink = document.querySelector(".avatar-link");
+    if (avatarLink) {
+        // 等待主卡片動畫完成後再執行頭像提示動畫
+        setTimeout(() => {
+            avatarLink.classList.add("auto-hint");
+            // 動畫完成後移除class，避免重複觸發
+            setTimeout(() => {
+                avatarLink.classList.remove("auto-hint");
+            }, 1200);
+        }, 2800); // 載入動畫(1500) + 主卡片動畫(800) + 延遲(500)
+    }
 
     // 社交連結點擊處理
     const socialLinks = document.querySelectorAll(".social-link");
@@ -212,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
+    
     // 觸控設備優化
     if ("ontouchstart" in window) {
         // 移除滑鼠移動效果，避免在觸控設備上出現問題

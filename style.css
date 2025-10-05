@@ -1,5 +1,327 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
 
+/* 載入動畫樣式 */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #87CEEB 0%, #FFB6C1 50%, #E6E6FA 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    animation: gradientShift 3s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.loader-wrapper.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 多層旋轉環 */
+.loader-rings {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid transparent;
+}
+
+.ring-1 {
+    width: 150px;
+    height: 150px;
+    border-top-color: #2E86AB;
+    border-right-color: #2E86AB;
+    animation: rotate 2s linear infinite;
+}
+
+.ring-2 {
+    width: 110px;
+    height: 110px;
+    border-bottom-color: #87CEEB;
+    border-left-color: #87CEEB;
+    animation: rotate 1.5s linear infinite reverse;
+}
+
+.ring-3 {
+    width: 70px;
+    height: 70px;
+    border-top-color: #FFA0B4;
+    border-bottom-color: #FFA0B4;
+    animation: rotate 1s linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 中心圖示 */
+.loader-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: #2E86AB;
+    animation: iconBounce 1.5s ease-in-out infinite;
+    z-index: 10;
+}
+
+@keyframes iconBounce {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* 載入文字區域 */
+.loader-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.loader-text {
+    font-family: "Caveat", cursive, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    color: #2E86AB;
+    font-weight: 700;
+    letter-spacing: 2px;
+    animation: textGlow 2s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(46, 134, 171, 0.3);
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(46, 134, 171, 0.3);
+    }
+    50% {
+        opacity: 0.8;
+        text-shadow: 0 0 20px rgba(46, 134, 171, 0.6);
+    }
+}
+
+.loader-subtitle {
+    font-size: 1rem;
+    color: #4A90A4;
+    font-weight: 500;
+    letter-spacing: 1px;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* 載入點動畫 */
+.loader-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    height: 20px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: #87CEEB;
+    border-radius: 50%;
+    animation: dotBounce 1.4s ease-in-out infinite;
+}
+
+.dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes dotBounce {
+    0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* 暗色模式下的載入動畫 */
+[data-theme="dark"] .loader-wrapper {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+[data-theme="dark"] .ring-1 {
+    border-top-color: #87CEEB;
+    border-right-color: #87CEEB;
+}
+
+[data-theme="dark"] .ring-2 {
+    border-bottom-color: #B0C4DE;
+    border-left-color: #B0C4DE;
+}
+
+[data-theme="dark"] .ring-3 {
+    border-top-color: #FFB6C1;
+    border-bottom-color: #FFB6C1;
+}
+
+[data-theme="dark"] .loader-icon {
+    color: #87CEEB;
+}
+
+[data-theme="dark"] .loader-text {
+    color: #87CEEB;
+    text-shadow: 0 0 10px rgba(135, 206, 235, 0.3);
+}
+
+@keyframes textGlowDark {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(135, 206, 235, 0.3);
+    }
+    50% {
+        opacity: 0.8;
+        text-shadow: 0 0 20px rgba(135, 206, 235, 0.6);
+    }
+}
+
+[data-theme="dark"] .loader-subtitle {
+    color: #B0C4DE;
+}
+
+[data-theme="dark"] .dot {
+    background: #87CEEB;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .loader-rings {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .ring-1 {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .ring-2 {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .ring-3 {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .loader-icon {
+        font-size: 32px;
+    }
+    
+    .loader-text {
+        font-size: 1.6rem;
+    }
+    
+    .loader-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .loader-rings {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .ring-1 {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .ring-2 {
+        width: 75px;
+        height: 75px;
+    }
+    
+    .ring-3 {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .loader-icon {
+        font-size: 28px;
+    }
+    
+    .loader-text {
+        font-size: 1.4rem;
+    }
+    
+    .loader-subtitle {
+        font-size: 0.85rem;
+    }
+}
+
 /* CSS 變量 */
 :root {
     /* 淺色模式 */
@@ -207,7 +529,33 @@ body {
     50% {
         box-shadow: 0 6px 25px rgba(135, 206, 235, 0.4);
     }
-}/* 網域名稱 */
+}
+
+/* 頭像自動縮放提示動畫 */
+@keyframes avatarBounceHint {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+}
+
+.avatar-link.auto-hint {
+    animation: avatarBounceHint 1.2s ease-in-out;
+}
+
+.avatar-link.auto-hint .avatar-image {
+    animation: none;
+}
+
+/* 網域名稱 */
 .domain-name {
     font-size: 2.8rem;
     font-weight: 600;
@@ -727,26 +1075,28 @@ body {
     position: absolute;
     top: 8px;
     right: 8px;
-    background: #10b981;
+    background: linear-gradient(135deg, #10b981, #059669);
     color: white;
     font-size: 0.7rem;
     font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: 3px 8px;
+    border-radius: 5px;
     z-index: 10;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .jupyter-suspended-badge {
     position: absolute;
     top: 8px;
     right: 8px;
-    background: #ef4444;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
     color: white;
     font-size: 0.7rem;
     font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: 3px 8px;
+    border-radius: 5px;
     z-index: 10;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* Jupyter配置選擇項目樣式調整 */
@@ -757,16 +1107,28 @@ body {
     color: inherit;
     background: var(--button-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--button-border);
+    border: 1px solid rgba(135, 206, 235, 0.2);
     border-radius: 15px;
     padding: 15px 20px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .jupyter-option:hover {
     transform: translateY(-3px);
     background: var(--button-hover-bg);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border-color: rgba(135, 206, 235, 0.3);
+}
+
+[data-theme="dark"] .jupyter-option {
+    border-color: rgba(135, 206, 235, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .jupyter-option:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-color: rgba(135, 206, 235, 0.25);
 }
 
 /* 禁止點擊的Jupyter選項樣式 */
@@ -875,11 +1237,13 @@ body {
 }
 
 .option-badge.lite {
-    background: linear-gradient(45deg, #87CEEB, #4A90A4);
+    background: linear-gradient(135deg, #87CEEB, #5FA8D3);
+    box-shadow: 0 3px 10px rgba(87, 168, 211, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .option-badge.pro {
-    background: linear-gradient(45deg, #FFB6C1, #FF69B4);
+    background: linear-gradient(135deg, #FFB6C1, #FFA0B4);
+    box-shadow: 0 3px 10px rgba(255, 182, 193, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 
@@ -895,12 +1259,19 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--social-link-bg);
+    background: rgba(255, 255, 255, 0.5);
     padding: 8px 12px;
     border-radius: 8px;
     font-size: 0.9rem;
     color: var(--text-secondary);
     font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .spec-item {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .spec-item i {
