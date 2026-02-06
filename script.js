@@ -15,8 +15,8 @@ window.addEventListener('load', function() {
 });
 
 // === 版本配置 - 唯一版本來源 ===
-const APP_VERSION = '1.3.30';
-const BUILD_DATE = '2025-10-05 23:12:08';
+const APP_VERSION = '2.0.0';
+const BUILD_DATE = '2026-02-07 04:58:21';
 
 // 版本資訊（從上方配置讀取）
 const CURRENT_VERSION = APP_VERSION;
