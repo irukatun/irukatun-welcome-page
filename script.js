@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 150);
             
             // 直接跳轉
-            window.directRedirect("https://status.irukatun.dev");
+            window.directRedirect("https://status.irukatun.dev/status");
         });
     }
 
