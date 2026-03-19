@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title> 維護中 | irukatun.dev</title>
+  <style>
+    :root {
+      --bg-top: #d8eefc;
+      --bg-mid: #f9e7cf;
+      --bg-bottom: #f6d9d8;
+      --text-primary: #1f2a44;
+      --text-secondary: #4c5f7a;
+      --card: rgba(255, 255, 255, 0.86);
+      --border: rgba(31, 42, 68, 0.14);
+      --accent: #2e86ab;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: "Segoe UI", "Noto Sans TC", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.65) 0, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(46, 134, 171, 0.18) 0, transparent 38%),
+        linear-gradient(165deg, var(--bg-top), var(--bg-mid) 45%, var(--bg-bottom));
+      padding: 24px;
+    }
+
+    .panel {
+      width: min(680px, 100%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 16px 40px rgba(31, 42, 68, 0.12);
+      backdrop-filter: blur(6px);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(46, 134, 171, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(46, 134, 171, 0.25);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 40px);
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 16px auto 0;
+      max-width: 42ch;
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+    }
+
+    .meta {
+      margin-top: 24px;
+      font-size: 14px;
+      color: #5e6f8a;
+    }
+
+    @media (max-width: 480px) {
+      .panel {
+        padding: 30px 20px;
+        border-radius: 18px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="panel" role="main" aria-live="polite">
+    <div class="badge">Maintenance Mode</div>
+    <h1>網站維護中</h1>
+    <p>目前正在進行維護，服務暫時無法使用。請稍後再重新連線，感謝您的耐心等候。</p>
+    <div class="meta">irukatun.dev</div>
+  </main>
+</body>
+</html>
